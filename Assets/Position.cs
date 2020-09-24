@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Position : MonoBehaviour
 {
-    Vector3 mousePos;
+    public Vector3 mousePos;
     public Camera cam;
     public GameObject player;
 

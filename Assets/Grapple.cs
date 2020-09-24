@@ -14,16 +14,16 @@ public class Grapple : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         //tell the grappling hook we hit something
-        GameObject grappleshot = FindObjectOfType<Shooting>().gameObject;
-        grappleshot.GetComponent<Shooting>().GrappleHit();
+   //     GameObject grappleshot = FindObjectOfType<Shooting>().gameObject;
+    //    grappleshot.GetComponent<Shooting>().GrappleHit();
 
         //get the player object
-        GameObject player = FindObjectOfType<PlayerMovement>().gameObject;
+  //      GameObject player = FindObjectOfType<PlayerMovement>().gameObject;
 
         //move our game object to collision point
-        player.GetComponent<PlayerMovement>().Grapple(hook.transform.position); //grab position of the rigidbody attached to the grapple
+   //     player.GetComponent<PlayerMovement>().Grapple(hook.transform.position); //grab position of the rigidbody attached to the grapple
 
-        hookrigidbody.velocity = Vector3.zero;
+  //      hookrigidbody.velocity = Vector3.zero;
         
     }
 
