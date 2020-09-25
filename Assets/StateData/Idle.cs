@@ -29,6 +29,11 @@ public class Idle : StateData
 
             animator.SetBool(PlayerMovement.transitionParameter.walk.ToString(), true); //moveLeft --> turn on movement
         }
+
+        if (c.jump)
+        {
+            animator.SetBool(PlayerMovement.transitionParameter.jump.ToString(), true);
+        }
     }
 
     public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)

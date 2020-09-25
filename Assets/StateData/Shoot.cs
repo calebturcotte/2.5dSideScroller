@@ -11,7 +11,7 @@ public class Shoot : StateData
 
     private GameObject grapple;
     public GameObject grapplePrefab;
-    //public Transform firePoint;
+    public Transform firePoint;
     private Rigidbody grapplerb;
     public float grappleForce = 10f;
 
@@ -25,7 +25,6 @@ public class Shoot : StateData
         PlayerMovement c = characterState.GetCharacterControl(animator);
         if (c.shoot)
         {
-
             Shoot();
             animator.SetBool(PlayerMovement.transitionParameter.shoot.ToString(), false);
             return;
@@ -39,7 +38,7 @@ public class Shoot : StateData
         
         void Shoot()
         {
-            GameObject bullet = Instantiate(bulletPrefab, c.mousePos, Quaternion.identity); //firePoint.position, firePoint.rotation);
+            GameObject bullet = Instantiate(bulletPrefab,firePoint.position, firePoint.rotation);
             Rigidbody rb = bullet.GetComponent<Rigidbody>();
             rb.AddForce(c.mousePos*bulletForce, ForceMode.Impulse);
         }

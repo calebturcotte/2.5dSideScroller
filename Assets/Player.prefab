@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8803249516882952809}
   - component: {fileID: 8803249516882952808}
   - component: {fileID: 8803249516882952811}
-  - component: {fileID: 8803249516882952810}
   - component: {fileID: 8803249516882952854}
   - component: {fileID: 8803249516882952855}
   - component: {fileID: 8803249516882952853}
@@ -84,19 +83,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &8803249516882952810
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8803249516882952813}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &8803249516882952854
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -125,16 +111,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0492798784ebf2d4099534e699c3406e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
   moveRight: 0
   moveLeft: 0
   grapple: 0
   shoot: 0
+  jump: 0
+  inAir: 0
   animator: {fileID: 0}
   grappleSpeed: 7
   grapplePosition: {x: 0, y: 0, z: 0}
   rb: {fileID: 0}
+  cam: {fileID: 0}
   movement: {x: 0, y: 0, z: 0}
+  mousePos: {x: 0, y: 0, z: 0}
 --- !u!120 &8803249516882952853
 LineRenderer:
   m_ObjectHideFlags: 0

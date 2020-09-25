@@ -5,6 +5,8 @@ using UnityEngine;
 public class CharacterState : StateMachineBehaviour
 {
 
+
+
     public List<StateData> ListAbilityData = new List<StateData>(); //create a list of states
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -33,7 +35,7 @@ public class CharacterState : StateMachineBehaviour
     {
         foreach (StateData d in ListAbilityData)
         {
-            d.OnEnter(this, animator, stateInfo);
+            d.OnExit(this, animator, stateInfo);
         }
     }
 

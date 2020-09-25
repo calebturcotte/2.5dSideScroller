@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class ManualInput : MonoBehaviour
 {
     private PlayerMovement playerMove; //giving access to playerMovement
@@ -14,33 +16,12 @@ public class ManualInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (VirtualInputManager.Instance.moveRight)
-        {
-            playerMove.moveRight = true;
-        } else {
-            playerMove.moveRight = false;
-        }
 
-        if (VirtualInputManager.Instance.moveLeft)
-        {
-            playerMove.moveLeft = true;
-        } else {
-            playerMove.moveLeft = false;
-        }
-
-        if (VirtualInputManager.Instance.shoot)
-        {
-            playerMove.shoot = true;
-        } else {
-            playerMove.shoot = false;
-        }
-
-        if (VirtualInputManager.Instance.grapple)
-        {
-            playerMove.grapple = true;
-        } else {
-            playerMove.grapple = false;
-        }
+        playerMove.moveRight = VirtualInputManager.Instance.moveRight;
+        playerMove.moveLeft = VirtualInputManager.Instance.moveLeft;
+        playerMove.shoot = VirtualInputManager.Instance.shoot;
+        playerMove.grapple = VirtualInputManager.Instance.grapple;
+        playerMove.jump = VirtualInputManager.Instance.jump;
 
 
     }

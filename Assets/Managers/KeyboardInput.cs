@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class KeyboardInput : MonoBehaviour
 {
-
+    public KeyCode jump, moveLeft, moveRight,grapple;
     void Update()
     {
-        if(Input.GetKey(KeyCode.D))
+        if(Input.GetKey(moveRight))
         {
             VirtualInputManager.Instance.moveRight = true;
         } else
@@ -15,7 +15,7 @@ public class KeyboardInput : MonoBehaviour
             VirtualInputManager.Instance.moveRight = false;
         }
 
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(moveLeft))
         {
             VirtualInputManager.Instance.moveLeft = true;
         }
@@ -24,26 +24,32 @@ public class KeyboardInput : MonoBehaviour
             VirtualInputManager.Instance.moveLeft = false;
         }
 
-        if (Input.GetKey(KeyCode.Space))
+       /* if (Input.GetKey(KeyCode.Space))
         {
             VirtualInputManager.Instance.shoot = true;
         }
         else
         {
             VirtualInputManager.Instance.shoot = false;
-        }
+        }*/
 
-        if (Input.GetMouseButton(1))
+        if (Input.GetKeyDown(grapple))
         {
             VirtualInputManager.Instance.grapple = true;
         }
         else
         {
-            
             VirtualInputManager.Instance.grapple = false;
         }
 
-
+        if (Input.GetKeyDown(jump))
+        {
+            VirtualInputManager.Instance.jump = true;
+        }
+        else
+        {
+            VirtualInputManager.Instance.jump = false;
+        }
 
 
     }
