@@ -60,7 +60,7 @@ public class Grappler : StateData //by having grapple here, it becomes exclusive
         }
         else if (!c.grapple)
         {
-            animator.SetBool(PlayerMovement.transitionParameter.grappling.ToString(), false);
+            animator.SetBool(PlayerMovement.TransitionParameter.grappling.ToString(), false);
             return;
         }
 
@@ -81,27 +81,7 @@ public class Grappler : StateData //by having grapple here, it becomes exclusive
                 rope.SetPosition(1, bullet.transform.position);
                 bullet.GetComponent<Grapple>().SetGrappler(this, c, bullet);
             }
-
-            //Destroy(bullet, 5f);
-            //animator.SetBool(PlayerMovement.transitionParameter.grappling.ToString(), false);
-            //c.grapple = false;
         }
-        /*        if (c.grapple)
-                {
-                    c.rb.transform.position = Vector2.MoveTowards(c.rb.position, c.grapplePosition, 1);
-                    c.rb.velocity = (c.grapplePosition - c.rb.position) * c.grappleSpeed;
-                    if (Vector2.Distance(c.rb.transform.position, c.grapplePosition) < 0.5)
-                    {
-                        c.rb.velocity = Vector3.zero;
-                        c.rb.velocity = c.movement * moveSpeed;
-                        c.grapple = false;
-
-                        GameObject shooting = FindObjectOfType<Shooting>().gameObject;
-                        shooting.GetComponent<Shooting>().GrappleEnd();
-                        rope.positionCount = 0;
-                    }
-
-                }*/
     }
 
     public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)

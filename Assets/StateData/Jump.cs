@@ -12,11 +12,9 @@ public class Jump : StateData
 
     public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-      
-        PlayerMovement c = characterState.GetCharacterControl(animator);
 
  
-        jump(characterState, animator);
+        PerformJump(characterState, animator);
 
     }
 
@@ -30,11 +28,10 @@ public class Jump : StateData
 
     }
 
-    public void jump(CharacterState characterState, Animator animator)
+    public void PerformJump(CharacterState characterState, Animator animator)
     {
-        Debug.Log(Input.GetMouseButtonDown(0));
         characterState.GetCharacterControl(animator).BiggRigid.AddForce(Vector3.up * jumpForce, ForceMode.Impulse); //Add force to the rigid body; vector * magnitude of jump
-        animator.SetBool(PlayerMovement.transitionParameter.jump.ToString(), false);
+        animator.SetBool(PlayerMovement.TransitionParameter.jump.ToString(), false);
        
     }
 

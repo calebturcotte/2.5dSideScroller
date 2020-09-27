@@ -15,30 +15,30 @@ public class Idle : StateData
 
         if (c.shoot)
         {
-            animator.SetBool(PlayerMovement.transitionParameter.shoot.ToString(), true);
+            animator.SetBool(PlayerMovement.TransitionParameter.shoot.ToString(), true);
         }
 
         if (c.moveRight) //if input manager's moveRight = true, move
         {
    
-            animator.SetBool(PlayerMovement.transitionParameter.walk.ToString(), true); //moveRight --> turn on movement
+            animator.SetBool(PlayerMovement.TransitionParameter.walk.ToString(), true); //moveRight --> turn on movement
         }
 
         if (c.moveLeft) //if input manager's moveRight = true, move
         {
 
-            animator.SetBool(PlayerMovement.transitionParameter.walk.ToString(), true); //moveLeft --> turn on movement
+            animator.SetBool(PlayerMovement.TransitionParameter.walk.ToString(), true); //moveLeft --> turn on movement
         }
 
         /*        if (c.grapple)
                 {
-                    animator.SetBool(PlayerMovement.transitionParameter.grappling.ToString(), true);
+                    animator.SetBool(PlayerMovement.TransitionParameter.grappling.ToString(), true);
                 }*/
-        animator.SetBool(PlayerMovement.transitionParameter.grappling.ToString(), c.grapple);
+        animator.SetBool(PlayerMovement.TransitionParameter.grappling.ToString(), c.grapple);
 
         if (c.jump)
         {
-            animator.SetBool(PlayerMovement.transitionParameter.jump.ToString(), true);
+            animator.SetBool(PlayerMovement.TransitionParameter.jump.ToString(), true);
         }
     }
 

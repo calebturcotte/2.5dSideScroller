@@ -19,7 +19,11 @@ public class ManualInput : MonoBehaviour
         playerMove.moveRight = VirtualInputManager.Instance.moveRight;
         playerMove.moveLeft = VirtualInputManager.Instance.moveLeft;
         playerMove.shoot = VirtualInputManager.Instance.shoot;
-        playerMove.grapple = VirtualInputManager.Instance.grapple;
+        if (VirtualInputManager.Instance.grapple)
+        {
+            playerMove.grapple = VirtualInputManager.Instance.grapple;
+        }
+        
         playerMove.jump = VirtualInputManager.Instance.jump;
         //a tracker for our right click button, when release we will let go of the grapple if needed
         playerMove.grappling = VirtualInputManager.Instance.grapple;

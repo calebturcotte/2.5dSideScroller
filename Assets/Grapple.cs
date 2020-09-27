@@ -76,17 +76,17 @@ public class Grapple : MonoBehaviour
             if (c.grappling)
             {
                 
-                if (Vector2.Distance(tempposition, tempposition2) > 1)
+                if (Vector2.Distance(tempposition, tempposition2) > 1.5)
                 {
 
                     //c.rb.velocity = new Vector3(0,0,0);
-                    c.rb.transform.position = tempposition2 + (tempposition - tempposition2).normalized * 1f;
+                    c.BiggRigid.transform.position = tempposition2 + (tempposition - tempposition2).normalized * 1.5f;
                     grappler.rope.SetPosition(0, grappler.c.transform.position);
                     grappler.rope.SetPosition(1, transform.position);
-                    if ((tempposition2.y-tempposition.y) >= 1.02)
+                    if ((tempposition2.y-tempposition.y) >= 1.54)
                     {
                         //c.rb.useGravity = false;
-                        c.rb.velocity = new Vector3(0, 0, 0);
+                        c.BiggRigid.velocity = new Vector3(0, 0, 0);
                         hanging = true;
 
                     }
@@ -103,7 +103,7 @@ public class Grapple : MonoBehaviour
         }
         else if (grappling && !returning)
         {
-            c.rb.velocity = (tempposition2 - tempposition) * grappleSpeed;
+            c.BiggRigid.velocity = (tempposition2 - tempposition) * grappleSpeed;
             if (Vector2.Distance(tempposition,tempposition2) < 1)
             {
                 hooked = true;
@@ -125,10 +125,10 @@ public class Grapple : MonoBehaviour
 
     void EndHook()
     {
-        c.rb.useGravity = true;
+        c.BiggRigid.useGravity = true;
         if (hanging)
         {
-            c.rb.velocity = new Vector3(0, 0, 0);
+            c.BiggRigid.velocity = new Vector3(0, 0, 0);
             //hooked = false;
         }
         c.grapple = false;

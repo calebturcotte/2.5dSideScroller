@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
      * Our Handler for player movement
      */
 
-    public enum transitionParameter
+    public enum TransitionParameter
     {
         walk,
         shoot,
@@ -35,24 +35,14 @@ public class PlayerMovement : MonoBehaviour
    
     public float grappleSpeed = 7f;
     public Vector3 grapplePosition;
-    public Rigidbody rb;
+    private Rigidbody rb;
     public Camera cam;
 
     public Vector3 aimingposition;
 
 
     public Vector3 movement;
-    // Vector3 rollmovement;
     public Vector3 mousePos;
-    //   Vector3 dashmovement;
-
-
-
-    //   Vector3 damagedPosition;
-    //   private float damagedTime = 0.25f;
-    // private float timetrack = 0;
-
-    // Update is called once per frame
 
 
 
@@ -60,25 +50,14 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
        
-        //movement.x = Input.GetAxisRaw("Horizontal");
-        //movement.y = Input.GetAxisRaw("Vertical");
 
-        //currently gives position of camera because z is not set (?)
+        //currently gives position of mouse on camera
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-        mousePos = Input.mousePosition; //gives position where bottom left corner is 0,0
+        mousePos = Input.mousePosition; //gives position where camera bottom left corner is 0,0
         mousePos.z = 1;
 
-        aimingposition = (mousePos - Camera.main.WorldToScreenPoint(transform.position)).normalized * 0.7f;
+        aimingposition = (mousePos - Camera.main.WorldToScreenPoint(transform.position)).normalized * 1f;
         aimingposition.z = 0;
-
-        //      if (Input.GetKeyDown("space"))
-        //     {
-        //         Roll();
-        //     }
-        //     if (Input.GetKeyDown(KeyCode.LeftShift))
-        //       {
-        //         Dash();
-        //      }
 
     }
 
@@ -91,32 +70,15 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    //Take Damage to our player and give them a slight knockback to movement
-    //    public void TakeDamage(float damageamount, Vector3 position)
-    //   {
-    //       damagetaken = true;
-    //        health -= damageamount;
-    //        Debug.Log(health);
-
-    //        this.damagedPosition = position;
-    //
-    //        if(health < 0)
-    //        {
-    //            Debug.Log("Game Over!");
-    //       }
-    //    }
-
-
-    private Rigidbody jRB;
     public Rigidbody BiggRigid
     {
         get
         {
-            if (jRB == null)
+            if (rb == null)
             {
-                jRB = GetComponent<Rigidbody>();
+                rb = GetComponent<Rigidbody>();
             }
-            return jRB;
+            return rb;
         }
     }
 

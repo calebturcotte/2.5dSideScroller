@@ -22,9 +22,9 @@ public class Grounded : StateData
     {
         PlayerMovement c = characterState.GetCharacterControl(animator);
 
-        if (grounded(c))
+        if (IsGrounded(c))
         {
-            animator.SetBool(PlayerMovement.transitionParameter.jump.ToString(), false);
+            animator.SetBool(PlayerMovement.TransitionParameter.jump.ToString(), false);
 
         }
 
@@ -36,12 +36,8 @@ public class Grounded : StateData
     }
 
 
-    bool grounded(PlayerMovement c)
+    bool IsGrounded(PlayerMovement c)
     {
-        if (c.BiggRigid.velocity.y <= 0f && c.BiggRigid.velocity.y > -0.01f) //if y velocity is greater than -0.01 and less than 0, grounded
-        {
-            return true;
-        }
 
         foreach (GameObject o in c.BottomSpheres) //checks collsion for each sphere in this list
         {

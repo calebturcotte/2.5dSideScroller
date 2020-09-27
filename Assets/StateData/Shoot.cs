@@ -35,7 +35,7 @@ public class Shoot : StateData
         }
         else if (!c.shoot)
         {
-            animator.SetBool(PlayerMovement.transitionParameter.shoot.ToString(), false);
+            animator.SetBool(PlayerMovement.TransitionParameter.shoot.ToString(), false);
             return;
         }
 

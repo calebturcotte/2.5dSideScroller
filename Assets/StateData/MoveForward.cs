@@ -19,13 +19,13 @@ public class MoveForward : StateData
         
         if (c.moveRight && c.moveLeft)
         {
-            animator.SetBool(PlayerMovement.transitionParameter.walk.ToString(), false);
+            animator.SetBool(PlayerMovement.TransitionParameter.walk.ToString(), false);
             return;
         }
 
         if (!c.moveRight && !c.moveLeft)
         {
-            animator.SetBool(PlayerMovement.transitionParameter.walk.ToString(), false);
+            animator.SetBool(PlayerMovement.TransitionParameter.walk.ToString(), false);
             return;
         }
 
@@ -45,7 +45,7 @@ public class MoveForward : StateData
 
         if (c.jump)
         {
-            animator.SetBool(PlayerMovement.transitionParameter.jump.ToString(), true);
+            animator.SetBool(PlayerMovement.TransitionParameter.jump.ToString(), true);
         }
        
     }

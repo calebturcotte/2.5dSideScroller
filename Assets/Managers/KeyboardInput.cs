@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KeyboardInput : MonoBehaviour
+public class KeyboardInput : Singleton<KeyboardInput>
 {
-    public KeyCode jump, moveLeft, moveRight,grapple;
+    public KeyCode jump, moveLeft, moveRight,grapple, shoot;
     void Update()
     {
         if(Input.GetKey(moveRight))
@@ -24,16 +24,16 @@ public class KeyboardInput : MonoBehaviour
             VirtualInputManager.Instance.moveLeft = false;
         }
 
-       /* if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(shoot))
         {
             VirtualInputManager.Instance.shoot = true;
         }
         else
         {
             VirtualInputManager.Instance.shoot = false;
-        }*/
+        }
 
-        if (Input.GetKeyDown(grapple))
+        if (Input.GetKey(grapple))
         {
             VirtualInputManager.Instance.grapple = true;
         }
