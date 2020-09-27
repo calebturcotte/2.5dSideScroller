@@ -46,10 +46,10 @@ public class EnemyMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        GameObject player = FindObjectOfType<PlayerMovement>().gameObject;
+  //      GameObject player = FindObjectOfType<PlayerMovement>().gameObject;
 
         //move our game object to collision point
-        if(collision.gameObject.Equals(player))
-        player.GetComponent<PlayerMovement>().TakeDamage(monsterdamage, rb.transform.position); //grab position of the rigidbody attached to the grapple
+   //     if(collision.gameObject.Equals(player))
+   //     player.GetComponent<PlayerMovement>().TakeDamage(monsterdamage, rb.transform.position); //grab position of the rigidbody attached to the grapple
     }
 }
