@@ -37,10 +37,13 @@ public class ManualInput : MonoBehaviour
 
         if (VirtualInputManager.Instance.grapple)
         {
+            //will exit grapple state once the grapple has finished
             playerMove.grapple = true;
-        } else {
-            playerMove.grapple = false;
-        }
+        } 
+
+        //a tracker for our right click button, when release we will let go of the grapple if needed
+        playerMove.grappling = VirtualInputManager.Instance.grapple;
+    
 
 
     }

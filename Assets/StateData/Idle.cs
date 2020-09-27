@@ -29,6 +29,12 @@ public class Idle : StateData
 
             animator.SetBool(PlayerMovement.transitionParameter.walk.ToString(), true); //moveLeft --> turn on movement
         }
+
+        /*        if (c.grapple)
+                {
+                    animator.SetBool(PlayerMovement.transitionParameter.grappling.ToString(), true);
+                }*/
+        animator.SetBool(PlayerMovement.transitionParameter.grappling.ToString(), c.grapple);
     }
 
     public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)

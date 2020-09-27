@@ -5,25 +5,39 @@ using UnityEngine;
 public class Grapple : MonoBehaviour
 {
 
-    public GameObject hook;
+    private GameObject hook;
 
     public Rigidbody hookrigidbody;
-    //private PlayerMovement playermovement;
-    
-    
+
+    private Grappler grappler;
+
+    private bool returning;
+
+    private PlayerMovement c;
+
+    private bool grappling;
+    private readonly float grappleSpeed = 7f;
+
+    private float grappletime = 0.5f;
+    private float grappletimecount;
+
+    private bool hooked;
+    private bool hanging;
+
+
     void OnCollisionEnter(Collision collision)
     {
-        //tell the grappling hook we hit something
-   //     GameObject grappleshot = FindObjectOfType<Shooting>().gameObject;
-    //    grappleshot.GetComponent<Shooting>().GrappleHit();
+        if (!returning)
+        {
+            grappling = true;
+            GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;
+        }
+        else
+        {
+            EndHook();
+        }
 
-        //get the player object
-  //      GameObject player = FindObjectOfType<PlayerMovement>().gameObject;
-
-        //move our game object to collision point
-   //     player.GetComponent<PlayerMovement>().Grapple(hook.transform.position); //grab position of the rigidbody attached to the grapple
-
-  //      hookrigidbody.velocity = Vector3.zero;
         
     }
 
@@ -31,5 +45,95 @@ public class Grapple : MonoBehaviour
     void OnBecameInvisible()
     {
         //Destroy(gameObject);
+    }
+
+    public void SetGrappler(Grappler grappler, PlayerMovement c, GameObject hook)
+    {
+        if(this.c == null)
+        {
+            this.c = c;
+        }
+        this.hook = hook;
+        this.grappler = grappler;
+        grappletimecount = 0f;
+        returning = false;
+        hooked = false;
+        hanging = false;
+        
+    }
+
+    void Update()
+    {  
+
+        grappler.rope.positionCount = 2;
+        grappler.rope.SetPosition(0, grappler.c.transform.position);
+        grappler.rope.SetPosition(1, transform.position);
+        Vector2 tempposition = c.transform.position;
+        Vector2 tempposition2 = hook.transform.position;
+
+        if (hooked)
+        {
+            if (c.grappling)
+            {
+                
+                if (Vector2.Distance(tempposition, tempposition2) > 1)
+                {
+
+                    //c.rb.velocity = new Vector3(0,0,0);
+                    c.rb.transform.position = tempposition2 + (tempposition - tempposition2).normalized * 1f;
+                    grappler.rope.SetPosition(0, grappler.c.transform.position);
+                    grappler.rope.SetPosition(1, transform.position);
+                    if ((tempposition2.y-tempposition.y) >= 1.02)
+                    {
+                        //c.rb.useGravity = false;
+                        c.rb.velocity = new Vector3(0, 0, 0);
+                        hanging = true;
+
+                    }
+                    else
+                    {
+                        //c.rb.useGravity = true;
+                    }
+                }
+            }
+            else
+            {
+                EndHook();
+            }
+        }
+        else if (grappling && !returning)
+        {
+            c.rb.velocity = (tempposition2 - tempposition) * grappleSpeed;
+            if (Vector2.Distance(tempposition,tempposition2) < 1)
+            {
+                hooked = true;
+            }
+        }
+        else if (grappletimecount > grappletime && !returning)
+        {
+            returning = true;
+            GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+            GetComponent<Rigidbody>().AddForce((tempposition-tempposition2)*grappleSpeed, ForceMode.Impulse);
+            grappletime = 0;
+        }
+        else if (returning && Vector2.Distance(tempposition, tempposition2) < 2)
+        {
+            EndHook();
+        }
+        grappletimecount += Time.deltaTime;
+    }
+
+    void EndHook()
+    {
+        c.rb.useGravity = true;
+        if (hanging)
+        {
+            c.rb.velocity = new Vector3(0, 0, 0);
+            //hooked = false;
+        }
+        c.grapple = false;
+        grappler.grappling = false;
+        grappler.rope.positionCount = 0;
+        Destroy(hook);
     }
 }

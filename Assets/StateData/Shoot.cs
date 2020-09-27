@@ -9,15 +9,14 @@ public class Shoot : StateData
     public GameObject bulletPrefab;
     public float bulletForce;
 
-    private GameObject grapple;
-    public GameObject grapplePrefab;
-    //public Transform firePoint;
-    private Rigidbody grapplerb;
-    public float grappleForce = 10f;
+
+    private float shootcooldown = 0.25f;
+    private float shoottime = 0;
 
     public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-
+        shoottime = 1f;
+        shootcooldown = 0.25f;
     }
     public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
@@ -25,9 +24,15 @@ public class Shoot : StateData
         PlayerMovement c = characterState.GetCharacterControl(animator);
         if (c.shoot)
         {
+            if(shoottime > shootcooldown)
+            {
+                Shoot();
+                shoottime = 0;
+                shootcooldown = 0.25f;
+            }
+            shoottime += Time.deltaTime;
+            
 
-            Shoot();
-            animator.SetBool(PlayerMovement.transitionParameter.shoot.ToString(), false);
             return;
         }
         else if (!c.shoot)
@@ -39,16 +44,17 @@ public class Shoot : StateData
         
         void Shoot()
         {
-            GameObject bullet = Instantiate(bulletPrefab, c.mousePos, Quaternion.identity); //firePoint.position, firePoint.rotation);
+            GameObject bullet = Instantiate(bulletPrefab, c.aimingposition+c.transform.position, c.transform.rotation); //firePoint.position, firePoint.rotation);
             Rigidbody rb = bullet.GetComponent<Rigidbody>();
-            rb.AddForce(c.mousePos*bulletForce, ForceMode.Impulse);
+            rb.AddForce(c.aimingposition*bulletForce, ForceMode.Impulse);
         }
 
     }
 
     public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-
+        shoottime = 1;
+        shootcooldown = 0.25f;
     }
 
 

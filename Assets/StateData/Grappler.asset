@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: Grappler
   m_EditorClassIdentifier: 
   Duration: 0
-  moveSpeed: 0
+  moveSpeed: 6
+  grapplePrefab: {fileID: 9214303172321859378, guid: 2aaabb30435cade439f0e84275857d11,
+    type: 3}
+  grappleForce: 10
