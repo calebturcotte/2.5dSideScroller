@@ -9,7 +9,6 @@ public class Shoot : StateData
     public GameObject bulletPrefab;
     public float bulletForce;
 
-
     private float shootcooldown = 0.25f;
     private float shoottime = 0;
 
@@ -32,7 +31,6 @@ public class Shoot : StateData
             }
             shoottime += Time.deltaTime;
             
-
             return;
         }
         else if (!c.shoot)

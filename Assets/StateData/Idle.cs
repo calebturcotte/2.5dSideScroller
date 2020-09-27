@@ -35,6 +35,11 @@ public class Idle : StateData
                     animator.SetBool(PlayerMovement.transitionParameter.grappling.ToString(), true);
                 }*/
         animator.SetBool(PlayerMovement.transitionParameter.grappling.ToString(), c.grapple);
+
+        if (c.jump)
+        {
+            animator.SetBool(PlayerMovement.transitionParameter.jump.ToString(), true);
+        }
     }
 
     public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)

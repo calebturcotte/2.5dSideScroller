@@ -42,6 +42,12 @@ public class MoveForward : StateData
             c.transform.rotation = Quaternion.Euler(0f, 180f, 0f); //LEFT = backward, negative direction
 
         }
+
+        if (c.jump)
+        {
+            animator.SetBool(PlayerMovement.transitionParameter.jump.ToString(), true);
+        }
+       
     }
 
     public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
