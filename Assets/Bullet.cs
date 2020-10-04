@@ -29,6 +29,8 @@ public class Bullet : MonoBehaviour
             health.DamageTaken(damage);
         }
         Destroy(gameObject);
+
+
     }
 
     //remove our object once it leaves the screen

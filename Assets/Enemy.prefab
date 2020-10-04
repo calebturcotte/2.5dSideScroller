@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 6375065093263806386}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movespeed: 3
+  health: 0
   moveRight: 0
   moveLeft: 0
   grapple: 0
@@ -172,9 +173,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 769efb6bbc81b554181e19551d9eb10d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spotdistance: 3
+  spotdistance: 6
   walldistance: 1
   shootdistance: 4
   gonedistance: 8
   bulletPrefab: {fileID: 4591219670736000821, guid: 201ca1f3005f142468849259f7f73855,
     type: 3}
+  IgnoredEnemy:
+    serializedVersion: 2
+    m_Bits: 256

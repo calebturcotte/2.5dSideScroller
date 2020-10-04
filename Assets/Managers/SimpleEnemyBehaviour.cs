@@ -10,6 +10,7 @@ public class SimpleEnemyBehaviour : MonoBehaviour
     public int shootdistance;
     public int gonedistance;
     public GameObject bulletPrefab;
+    public LayerMask IgnoredEnemy;
 
     private float bulletForce = 1f;
 
@@ -97,7 +98,7 @@ public class SimpleEnemyBehaviour : MonoBehaviour
                     movestate = false;
                 }
             }
-            else if (Physics.Raycast(enemyrb.transform.position, Vector3.left * 3f, out hit, spotdistance))
+            else if (Physics.Raycast(enemyrb.transform.position, Vector3.left * 3f, out hit, spotdistance, ~IgnoredEnemy))
             {
 
                 if (hit.collider.CompareTag("Player"))
@@ -105,7 +106,7 @@ public class SimpleEnemyBehaviour : MonoBehaviour
                     patrolling = false;
                 }
             }
-            else if (Physics.Raycast(enemyrb.transform.position, Vector3.right * 3f, out hit, spotdistance))
+            else if (Physics.Raycast(enemyrb.transform.position, Vector3.right * 3f, out hit, spotdistance, ~IgnoredEnemy))
             {
 
                 if (hit.collider.CompareTag("Player"))
@@ -113,7 +114,7 @@ public class SimpleEnemyBehaviour : MonoBehaviour
                     patrolling = false;
                 }
             }
-            else if (Physics.Raycast(enemyrb.transform.position, new Vector3(-1,1,0) * 3f, out hit, spotdistance))
+            else if (Physics.Raycast(enemyrb.transform.position, new Vector3(-1,1,0) * 3f, out hit, spotdistance, ~IgnoredEnemy))
             {
 
                 if (hit.collider.CompareTag("Player"))
@@ -121,7 +122,7 @@ public class SimpleEnemyBehaviour : MonoBehaviour
                     patrolling = false;
                 }
             }
-            else if (Physics.Raycast(enemyrb.transform.position, new Vector3(1,1,0) * 3f, out hit, spotdistance))
+            else if (Physics.Raycast(enemyrb.transform.position, new Vector3(1,1,0) * 3f, out hit, spotdistance, ~IgnoredEnemy))
             {
 
                 if (hit.collider.CompareTag("Player"))
