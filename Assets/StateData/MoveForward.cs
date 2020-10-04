@@ -6,7 +6,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New State", menuName = "macklegames/AbilityData/MoveForward")]
 public class MoveForward : StateData
 {
-    public float speed;
 
     public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
@@ -31,14 +30,14 @@ public class MoveForward : StateData
 
         if (c.moveRight) //if input manager's moveRight = true, move
         {
-            c.transform.Translate(Vector3.right *speed * Time.deltaTime); //translation
+            c.transform.Translate(Vector3.right *c.movespeed * Time.deltaTime); //translation
             c.transform.rotation = Quaternion.Euler(0f, 0f, 0f); //RIGHT = forward, positive direction
             animator.SetBool(PlayerMovement.TransitionParameter.walk.ToString(), true);
         }
 
-        if (VirtualInputManager.Instance.moveLeft) //if input manager's moveRight = true, move
+        if (c.moveLeft) //if input manager's moveLeft = true, move
         {
-            c.transform.Translate(Vector3.right * speed * Time.deltaTime);
+            c.transform.Translate(Vector3.right * c.movespeed * Time.deltaTime);
             c.transform.rotation = Quaternion.Euler(0f, 180f, 0f); //LEFT = backward, negative direction
             animator.SetBool(PlayerMovement.TransitionParameter.walk.ToString(), true);
         }

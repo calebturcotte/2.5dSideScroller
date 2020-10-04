@@ -23,6 +23,7 @@ public class Grapple : MonoBehaviour
 
     private bool hooked;
     private bool hanging;
+    FixedJoint joint;
 
 
     void OnCollisionEnter(Collision collision)
@@ -30,8 +31,20 @@ public class Grapple : MonoBehaviour
         if (!returning)
         {
             grappling = true;
-            GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
-            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;
+            /*            GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+                        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;*/
+
+            if(joint == null)
+            {
+                joint = gameObject.AddComponent<FixedJoint>();
+                joint.anchor = collision.contacts[0].point;
+                // conects the joint to the other object
+                joint.connectedBody = collision.contacts[0].otherCollider.transform.GetComponentInParent<Rigidbody>();
+                // Stops objects from continuing to collide and creating more joints
+                joint.enableCollision = false;
+            }
+
+
         }
         else
         {

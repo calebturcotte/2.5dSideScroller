@@ -10,7 +10,8 @@ public class PlayerMovement : MonoBehaviour
     /**
      * Our Handler for player movement
      */
-
+    public float movespeed;
+    public int health;
     public enum TransitionParameter
     {
         walk,
@@ -35,8 +36,6 @@ public class PlayerMovement : MonoBehaviour
 
     public Animator animator; //var represents the animator object and controls it
    
-    public float grappleSpeed = 7f;
-    public Vector3 grapplePosition;
     private Rigidbody rb;
     public Camera cam;
 
@@ -60,15 +59,6 @@ public class PlayerMovement : MonoBehaviour
 
         aimingposition = (mousePos - Camera.main.WorldToScreenPoint(transform.position)).normalized * 1f;
         aimingposition.z = 0;
-
-    }
-
-    public void Grapple(Vector3 grapplePosition)
-    {
-        this.grapplePosition = grapplePosition;
-
-        grapple = true;
-
 
     }
 
