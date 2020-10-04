@@ -23,13 +23,12 @@ public class Grounded : StateData
         if (IsGrounded(c))
         {
             animator.SetBool(PlayerMovement.TransitionParameter.grounded.ToString(), true);
-/*            animator.SetBool(PlayerMovement.TransitionParameter.jump.ToString(), false);*/
 
         }
         else
         {
             animator.SetBool(PlayerMovement.TransitionParameter.grounded.ToString(), false);
-            animator.SetBool(PlayerMovement.TransitionParameter.jump.ToString(), false);
+
         }
 
     }
