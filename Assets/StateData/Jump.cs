@@ -7,6 +7,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New State", menuName = "macklegames/AbilityData/Jump")]
 public class Jump : StateData
 {
+
     public float jumpForce;
 
 
@@ -14,7 +15,7 @@ public class Jump : StateData
     {
 
  
-        PerformJump(characterState, animator);
+        PerformJump(characterState, animator, stateInfo);
 
     }
 
@@ -25,14 +26,13 @@ public class Jump : StateData
 
     public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-
+        animator.SetBool(PlayerMovement.TransitionParameter.jump.ToString(), false);
     }
 
-    public void PerformJump(CharacterState characterState, Animator animator)
+    public void PerformJump(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
+        /*characterState.GetCharacterControl(animator).BiggRigid.velocity = Vector3.up * jumpForce; //Add force to the rigid body; vector * magnitude of jump*/
         characterState.GetCharacterControl(animator).BiggRigid.AddForce(Vector3.up * jumpForce, ForceMode.Impulse); //Add force to the rigid body; vector * magnitude of jump
-        animator.SetBool(PlayerMovement.TransitionParameter.jump.ToString(), false);
-       
     }
 
 }

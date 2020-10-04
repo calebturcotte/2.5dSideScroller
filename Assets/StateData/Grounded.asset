@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7323c5fb7478734aba70338b8dd6ac0, type: 3}
   m_Name: Grounded
   m_EditorClassIdentifier: 
-  distance: 0.001
+  distance: 0.1
