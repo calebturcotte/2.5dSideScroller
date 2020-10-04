@@ -44,7 +44,10 @@ public class CharacterState : StateMachineBehaviour
     {
        if (characterControl == null) //only get component if it is not already set
         {
-            characterControl = animator.GetComponentInParent<PlayerMovement>(); //characterController looks at animator
+
+             characterControl = animator.GetComponentInParent<PlayerMovement>();
+
+             //characterController looks at animator
             
         }
         return characterControl; //method will return the component of the parent which is called upon

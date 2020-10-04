@@ -21,6 +21,12 @@ public class Shoot : StateData
     {
 
         PlayerMovement c = characterState.GetCharacterControl(animator);
+
+        if (c.jump)
+        {
+            animator.SetBool(PlayerMovement.TransitionParameter.jump.ToString(), true);
+        }
+        
         if (c.shoot)
         {
             if(shoottime > shootcooldown)

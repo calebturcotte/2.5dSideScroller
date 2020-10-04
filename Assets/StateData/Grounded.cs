@@ -14,8 +14,6 @@ public class Grounded : StateData
     public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
 
- 
-
     }
 
     public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
@@ -24,7 +22,12 @@ public class Grounded : StateData
 
         if (IsGrounded(c))
         {
-            animator.SetBool(PlayerMovement.TransitionParameter.jump.ToString(), false);
+            animator.SetBool(PlayerMovement.TransitionParameter.grounded.ToString(), true);
+
+        }
+        else
+        {
+            animator.SetBool(PlayerMovement.TransitionParameter.grounded.ToString(), false);
 
         }
 
@@ -39,14 +42,16 @@ public class Grounded : StateData
     bool IsGrounded(PlayerMovement c)
     {
 
-        foreach (GameObject o in c.BottomSpheres) //checks collsion for each sphere in this list
-        {
-            RaycastHit hit;
-            if (Physics.Raycast(o.transform.position, -Vector3.up, out hit, distance)) //raycast for a certain length
+            foreach (GameObject o in c.BottomSpheres) //checks collsion for each sphere in this list
             {
-                return true; //if raycast touches something, player is grounded
+                RaycastHit hit;
+                if (Physics.Raycast(o.transform.position, -Vector3.up, out hit, distance)) //raycast for a certain length
+                {
+                    return true; //if raycast touches something, player is grounded
+                }
             }
-        }
+
+
         return false; //if raycast does not touch anything within this distance, player is NOT grounded
     }
 
