@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
         jumpLanding,
         grounded,
         grappling,
+        dash
     }
     public bool moveRight;
     public bool moveLeft;
@@ -29,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     public bool shoot;
     public bool jump;
     public bool grounded;
+    public bool dash;
     
 
 

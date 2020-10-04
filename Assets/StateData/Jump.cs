@@ -14,19 +14,26 @@ public class Jump : StateData
     public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
 
- 
-        PerformJump(characterState, animator, stateInfo);
+        if (animator.GetBool(PlayerMovement.TransitionParameter.grounded.ToString()))
+        {
+            PerformJump(characterState, animator, stateInfo);
+
+        }
 
     }
 
     public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
+        if (!animator.GetBool(PlayerMovement.TransitionParameter.grounded.ToString()))
+        {
+            animator.SetBool(PlayerMovement.TransitionParameter.jump.ToString(), false);
+        }
 
     }
 
     public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-        animator.SetBool(PlayerMovement.TransitionParameter.jump.ToString(), false);
+
     }
 
     public void PerformJump(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
@@ -37,3 +44,4 @@ public class Jump : StateData
     }
 
 }
+

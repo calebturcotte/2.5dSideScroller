@@ -46,6 +46,11 @@ public class MoveForward : StateData
         {
             animator.SetBool(PlayerMovement.TransitionParameter.jump.ToString(), true);
         }
+
+        if (c.dash)
+        {
+            animator.SetBool(PlayerMovement.TransitionParameter.dash.ToString(), true)
+;       }
        
     }
 

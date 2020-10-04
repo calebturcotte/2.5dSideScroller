@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class KeyboardInput : Singleton<KeyboardInput>
 {
-    public KeyCode jump, moveLeft, moveRight,grapple, shoot;
+    public KeyCode jump, moveLeft, moveRight, grapple, shoot;
+    
+
     void Update()
     {
         if(Input.GetKey(moveRight))
@@ -50,6 +53,8 @@ public class KeyboardInput : Singleton<KeyboardInput>
         {
             VirtualInputManager.Instance.jump = false;
         }
+
+
 
 
     }
