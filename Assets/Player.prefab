@@ -45,7 +45,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1369929183494718760}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1369929183494718765
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -121,9 +121,6 @@ MonoBehaviour:
   jump: 0
   grounded: 0
   animator: {fileID: 1369929183494718767}
-  grappleSpeed: 7
-  grapplePosition: {x: 0, y: 0, z: 0}
-  rb: {fileID: 1369929183494718931}
   cam: {fileID: 0}
   aimingposition: {x: 0, y: 0, z: 0}
   movement: {x: 0, y: 0, z: 0}

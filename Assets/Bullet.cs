@@ -10,6 +10,7 @@ public class Bullet : MonoBehaviour
     //public GameObject hitEffect;
 
     private float m_Lifespan = 1f; //bullet lifespan, in seconds
+    public int damage;
 
     void Start()
     {
@@ -22,6 +23,11 @@ public class Bullet : MonoBehaviour
         //collision lets us access values of object that we hit
         //GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity); //can add an effect or new animation after hit
         //Destroy(effect, 5f);
+        if (collision.collider.CompareTag("Player"))
+        {
+            PlayerHealth health = collision.collider.GetComponent<PlayerHealth>();
+            health.DamageTaken(damage);
+        }
         Destroy(gameObject);
     }
 
