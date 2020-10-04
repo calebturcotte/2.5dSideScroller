@@ -11,7 +11,7 @@ public class Idle : StateData
     }
     public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-        PlayerMovement c = characterState.GetCharacterControl(animator);
+        PlayerMovement c = (PlayerMovement)characterState.GetCharacterControl(animator);
 
         if (c.shoot)
         {

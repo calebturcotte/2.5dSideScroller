@@ -12,10 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc25ab38e6857304586761fe24652dd7, type: 3}
   m_Name: Shoot
   m_EditorClassIdentifier: 
-  Duration: 10
   rope: {fileID: 0}
-  bulletPrefab: {fileID: 4591219670736000821, guid: 201ca1f3005f142468849259f7f73855,
+  bulletPrefab: {fileID: 4591219670736000821, guid: 0403ea3f280560a499812b7e7f6f95ab,
     type: 3}
   bulletForce: 10
-  grapplePrefab: {fileID: 0}
-  grappleForce: 10
