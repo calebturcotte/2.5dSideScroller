@@ -86,14 +86,39 @@ public class SimpleEnemyBehaviour : MonoBehaviour
             }
             else if (Physics.Raycast(enemyrb.transform.position, Vector3.left * 3f, out hit, walldistance))
             {
-                if (!hit.collider.CompareTag("Player"))
+                if (hit.collider.CompareTag("Platform"))
+                {
+                    Physics.Raycast(enemyrb.transform.position, new Vector3(-1, 1, 0) * 3f, out hit, walldistance);
+                    if (hit.collider == null)
+                    {
+                        enemyMove.jump = true;
+                    }
+                    else
+                    {
+                        movestate = true;
+                    }
+
+                }
+                else if (!hit.collider.CompareTag("Player"))
                 {
                     movestate = true;
                 }
             }
             else if (Physics.Raycast(enemyrb.transform.position, Vector3.right * 3f, out hit, walldistance))
             {
-                if (!hit.collider.CompareTag("Player"))
+                if (hit.collider.CompareTag("Platform"))
+                {
+                    Physics.Raycast(enemyrb.transform.position, new Vector3(1, 1, 0) * 3f, out hit, walldistance);
+                    if (hit.collider == null)
+                    {
+                        enemyMove.jump = true;
+                    }
+                    else
+                    {
+                        movestate = false;
+                    }
+                }
+                else if (!hit.collider.CompareTag("Player"))
                 {
                     movestate = false;
                 }

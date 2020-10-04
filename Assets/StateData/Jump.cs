@@ -33,6 +33,7 @@ public class Jump : StateData
     {
         /*characterState.GetCharacterControl(animator).BiggRigid.velocity = Vector3.up * jumpForce; //Add force to the rigid body; vector * magnitude of jump*/
         characterState.GetCharacterControl(animator).BiggRigid.AddForce(Vector3.up * jumpForce, ForceMode.Impulse); //Add force to the rigid body; vector * magnitude of jump
+        characterState.GetCharacterControl(animator).jump = false;
     }
 
 }

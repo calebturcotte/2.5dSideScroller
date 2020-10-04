@@ -175,7 +175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spotdistance: 6
   walldistance: 1
-  shootdistance: 4
+  shootdistance: 6
   gonedistance: 8
   bulletPrefab: {fileID: 4591219670736000821, guid: 201ca1f3005f142468849259f7f73855,
     type: 3}
