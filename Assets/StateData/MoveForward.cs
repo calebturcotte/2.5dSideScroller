@@ -30,15 +30,18 @@ public class MoveForward : StateData
 
         if (c.moveRight) //if input manager's moveRight = true, move
         {
-            c.transform.Translate(Vector3.right *c.movespeed * Time.deltaTime); //translation
+            //c.transform.Translate(Vector3.right *c.movespeed * Time.deltaTime); //translation
+            Debug.Log(c.BiggRigid.velocity);
             c.transform.rotation = Quaternion.Euler(0f, 0f, 0f); //RIGHT = forward, positive direction
+            c.BiggRigid.velocity = new Vector3(c.movespeed, c.BiggRigid.velocity.y, 0);
             animator.SetBool(PlayerMovement.TransitionParameter.walk.ToString(), true);
         }
 
         if (c.moveLeft) //if input manager's moveLeft = true, move
         {
-            c.transform.Translate(Vector3.right * c.movespeed * Time.deltaTime);
+            //c.transform.Translate(Vector3.right * c.movespeed * Time.deltaTime);
             c.transform.rotation = Quaternion.Euler(0f, 180f, 0f); //LEFT = backward, negative direction
+            c.BiggRigid.velocity = new Vector3(-c.movespeed, c.BiggRigid.velocity.y, 0);
             animator.SetBool(PlayerMovement.TransitionParameter.walk.ToString(), true);
         }
 
