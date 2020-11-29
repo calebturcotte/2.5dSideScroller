@@ -125,7 +125,7 @@ public class Grapple : MonoBehaviour
         else if (grappletimecount > grappletime && !returning)
         {
             returning = true;
-            GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+            GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0); 
             GetComponent<Rigidbody>().AddForce((tempposition-tempposition2)*grappleSpeed, ForceMode.Impulse);
             grappletime = 0;
         }

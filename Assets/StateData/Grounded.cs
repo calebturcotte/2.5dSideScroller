@@ -23,12 +23,10 @@ public class Grounded : StateData
         if (IsGrounded(c))
         {
             animator.SetBool(PlayerMovement.TransitionParameter.grounded.ToString(), true);
-
         }
         else
         {
             animator.SetBool(PlayerMovement.TransitionParameter.grounded.ToString(), false);
-
         }
 
     }
@@ -41,7 +39,6 @@ public class Grounded : StateData
 
     bool IsGrounded(PlayerMovement c)
     {
-
             foreach (GameObject o in c.BottomSpheres) //checks collsion for each sphere in this list
             {
                 RaycastHit hit;
@@ -50,7 +47,6 @@ public class Grounded : StateData
                     return true; //if raycast touches something, player is grounded
                 }
             }
-
 
         return false; //if raycast does not touch anything within this distance, player is NOT grounded
     }
