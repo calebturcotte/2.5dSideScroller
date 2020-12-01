@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SimpleEnemyBehaviour : MonoBehaviour
+public class SimpleEnemyBossBehavior : MonoBehaviour
 {
 
     public int spotdistance;
@@ -69,36 +69,38 @@ public class SimpleEnemyBehaviour : MonoBehaviour
                 enemyMove.moveLeft = true;
             }
 
-            if(!Physics.Raycast(enemyrb.transform.position - new Vector3(0.5f, 0, 0), leftcheck * 3f, out hit, 2))
+            if (!Physics.Raycast(enemyrb.transform.position - new Vector3(0.5f, 0, 0), leftcheck * 3f, out hit, 2))
             {
-/*                Debug.Log(hit);
-                Debug.Log(hit.collider);*/
+                /*                Debug.Log(hit);
+                                Debug.Log(hit.collider);*/
                 if (hit.collider == null) // change direction if no platform is found
                 {
                     movestate = true;
                 }
 
             }
-            else if(!Physics.Raycast(enemyrb.transform.position + new Vector3(0.5f, 0, 0), rightcheck * 3f, out hit, 2))
+            else if (!Physics.Raycast(enemyrb.transform.position + new Vector3(0.5f, 0, 0), rightcheck * 3f, out hit, 2))
             {
                 if (hit.collider == null) // change direction if no platform is found
                 {
                     movestate = false;
                 }
             }
-            else if (Physics.Raycast(enemyrb.transform.position, Vector3.left * 2f, out hit, walldistance))
+            else if (Physics.Raycast(enemyrb.transform.position, Vector3.left * 2f, out hit, walldistance, ~IgnoredEnemy))
             {
                 if (hit.collider.CompareTag("Platform"))
                 {
-                    Physics.Raycast(enemyrb.transform.position, new Vector3(-1, 1, 0) * 3f, out hit, walldistance);
-                    if (hit.collider == null)
-                    {
-                        enemyMove.jump = true;
-                    }
-                    else
-                    {
-                        movestate = true;
-                    }
+                    Physics.Raycast(enemyrb.transform.position, new Vector3(-1, 1, 0) * 3f, out hit, walldistance, ~IgnoredEnemy);
+                    /*                    Debug.Log(hit.collider);
+                                        if (hit.collider == null)
+                                        {
+                                            enemyMove.jump = true;
+                                        }
+                                        else
+                                        {
+                                            movestate = true;
+                                        }*/
+                    movestate = true;
 
                 }
                 else if (!hit.collider.CompareTag("Player"))
@@ -111,15 +113,16 @@ public class SimpleEnemyBehaviour : MonoBehaviour
                 if (hit.collider.CompareTag("Platform"))
                 {
                     Physics.Raycast(enemyrb.transform.position, new Vector3(1, 1, 0) * 4f, out hit, walldistance);
-                    Debug.Log(hit.collider);
-                    if (hit.collider == null)
-                    {
-                        enemyMove.jump = true;
-                    }
-                    else
-                    {
-                        movestate = false;
-                    }
+                    /*                    Debug.Log(hit.collider);
+                                        if (hit.collider == null)
+                                        {
+                                            enemyMove.jump = true;
+                                        }
+                                        else
+                                        {
+                                            movestate = false;
+                                        }*/
+                    movestate = false;
                 }
                 else if (!hit.collider.CompareTag("Player"))
                 {
@@ -142,7 +145,7 @@ public class SimpleEnemyBehaviour : MonoBehaviour
                     patrolling = false;
                 }
             }
-            else if (Physics.Raycast(enemyrb.transform.position, new Vector3(-1,1,0) * 3f, out hit, spotdistance, ~IgnoredEnemy))
+            else if (Physics.Raycast(enemyrb.transform.position, new Vector3(-1, 1, 0) * 3f, out hit, spotdistance, ~IgnoredEnemy))
             {
 
                 if (hit.collider.CompareTag("Player"))
@@ -150,7 +153,7 @@ public class SimpleEnemyBehaviour : MonoBehaviour
                     patrolling = false;
                 }
             }
-            else if (Physics.Raycast(enemyrb.transform.position, new Vector3(1,1,0) * 3f, out hit, spotdistance, ~IgnoredEnemy))
+            else if (Physics.Raycast(enemyrb.transform.position, new Vector3(1, 1, 0) * 3f, out hit, spotdistance, ~IgnoredEnemy))
             {
 
                 if (hit.collider.CompareTag("Player"))
@@ -158,13 +161,13 @@ public class SimpleEnemyBehaviour : MonoBehaviour
                     patrolling = false;
                 }
             }
-/*            Debug.DrawRay(enemyrb.transform.position - new Vector3(0.5f,0,0), leftcheck, Color.red, 0.5f);
-            Debug.DrawRay(enemyrb.transform.position + new Vector3(0.5f, 0, 0), rightcheck, Color.red, 0.5f);*/
+            /*            Debug.DrawRay(enemyrb.transform.position - new Vector3(0.5f,0,0), leftcheck, Color.red, 0.5f);
+                        Debug.DrawRay(enemyrb.transform.position + new Vector3(0.5f, 0, 0), rightcheck, Color.red, 0.5f);*/
 
         }
         else
         {
-/*            Debug.DrawRay(enemyrb.transform.position, Vector3.left * 3f, Color.red, 0.5f);*/
+            /*            Debug.DrawRay(enemyrb.transform.position, Vector3.left * 3f, Color.red, 0.5f);*/
 
             Vector3 distance = enemyrb.transform.position - player.GetComponent<Rigidbody>().transform.position;
             if (Vector2.Distance(enemyrb.transform.position, player.GetComponent<Rigidbody>().transform.position) < gonedistance)
@@ -203,7 +206,7 @@ public class SimpleEnemyBehaviour : MonoBehaviour
                 timewaited += Time.deltaTime;
                 enemyMove.moveRight = false;
                 enemyMove.moveLeft = false;
-                if(timewaited > waittime)
+                if (timewaited > waittime)
                 {
                     patrolling = true;
                 }
