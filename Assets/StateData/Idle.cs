@@ -26,7 +26,6 @@ public class Idle : StateData
 
         if (c.moveRight) //if input manager's moveRight = true, move
         {
-
             c.direction = 0;
             animator.SetBool(PlayerMovement.TransitionParameter.walk.ToString(), true); //moveRight --> turn on movement
         }
@@ -34,8 +33,6 @@ public class Idle : StateData
         if (c.moveLeft) //if input manager's moveRight = true, move
         {
             c.direction = 1;//set direction to LEFT
-
-
             animator.SetBool(PlayerMovement.TransitionParameter.walk.ToString(), true); //moveLeft --> turn on movement
         }
 

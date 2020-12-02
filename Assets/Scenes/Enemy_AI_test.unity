@@ -724,7 +724,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0492798784ebf2d4099534e699c3406e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movespeed: 3
   health: 0
   moveRight: 0
   moveLeft: 0
@@ -734,6 +733,7 @@ MonoBehaviour:
   jump: 0
   grounded: 0
   dash: 0
+  direction: 0
   animator: {fileID: 543285559}
   cam: {fileID: 1628550330}
   aimingposition: {x: 0, y: 0, z: 0}
@@ -742,6 +742,7 @@ MonoBehaviour:
   ColliderEdgePrefab: {fileID: 9179835536678920747, guid: fd47f877471342f43a1f457580029771,
     type: 3}
   BottomSpheres: []
+  CollisionSpheres: []
 --- !u!1 &1022933503
 GameObject:
   m_ObjectHideFlags: 0
@@ -831,7 +832,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1022933503}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.78, y: 18.91, z: 0}
+  m_LocalPosition: {x: 11.07, y: 16.12, z: 0}
   m_LocalScale: {x: 4.27, y: 3.48, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1592,7 +1593,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1889809748}
-  smoothSpeed: 0.125
   offset: {x: 0, y: 0, z: -10}
 --- !u!1 &1762875175 stripped
 GameObject:
@@ -1612,7 +1612,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0492798784ebf2d4099534e699c3406e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movespeed: 3
   health: 0
   moveRight: 0
   moveLeft: 0
@@ -1622,6 +1621,7 @@ MonoBehaviour:
   jump: 0
   grounded: 0
   dash: 0
+  direction: 0
   animator: {fileID: 1762875178}
   cam: {fileID: 1628550330}
   aimingposition: {x: 0, y: 0, z: 0}
@@ -1630,6 +1630,7 @@ MonoBehaviour:
   ColliderEdgePrefab: {fileID: 9179835536678920747, guid: fd47f877471342f43a1f457580029771,
     type: 3}
   BottomSpheres: []
+  CollisionSpheres: []
 --- !u!95 &1762875178 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 6375065093263806387, guid: cef2dcba6bbc8f5498370c4367dfa998,
@@ -1749,7 +1750,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0492798784ebf2d4099534e699c3406e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movespeed: 3
   health: 0
   moveRight: 0
   moveLeft: 0
@@ -1759,6 +1759,7 @@ MonoBehaviour:
   jump: 0
   grounded: 0
   dash: 0
+  direction: 0
   animator: {fileID: 1863162540}
   cam: {fileID: 1628550330}
   aimingposition: {x: 0, y: 0, z: 0}
@@ -1767,6 +1768,7 @@ MonoBehaviour:
   ColliderEdgePrefab: {fileID: 9179835536678920747, guid: fd47f877471342f43a1f457580029771,
     type: 3}
   BottomSpheres: []
+  CollisionSpheres: []
 --- !u!95 &1863162540 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 6375065093263806387, guid: cef2dcba6bbc8f5498370c4367dfa998,
@@ -2230,7 +2232,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0492798784ebf2d4099534e699c3406e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movespeed: 3
   health: 0
   moveRight: 0
   moveLeft: 0
@@ -2240,6 +2241,7 @@ MonoBehaviour:
   jump: 0
   grounded: 0
   dash: 0
+  direction: 0
   animator: {fileID: 6375065092408003689}
   cam: {fileID: 1628550330}
   aimingposition: {x: 0, y: 0, z: 0}
@@ -2248,6 +2250,7 @@ MonoBehaviour:
   ColliderEdgePrefab: {fileID: 9179835536678920747, guid: fd47f877471342f43a1f457580029771,
     type: 3}
   BottomSpheres: []
+  CollisionSpheres: []
 --- !u!95 &6375065092408003689 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 6375065093263806387, guid: cef2dcba6bbc8f5498370c4367dfa998,

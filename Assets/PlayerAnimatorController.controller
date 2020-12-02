@@ -71,7 +71,6 @@ MonoBehaviour:
   ListAbilityData:
   - {fileID: 11400000, guid: 74d09295b279ee148b0df25d0008bf0e, type: 2}
   - {fileID: 11400000, guid: be1ccb873f3d2d647bfc3347e7435040, type: 2}
-  - {fileID: 11400000, guid: 442972487f3c5b34ca380e2050b6ccc7, type: 2}
 --- !u!1101 &-6271860501648520545
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -215,8 +214,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ListAbilityData:
   - {fileID: 11400000, guid: 1ea2a2383b9963148885d8711ab2116f, type: 2}
-  - {fileID: 11400000, guid: 442972487f3c5b34ca380e2050b6ccc7, type: 2}
-  - {fileID: 11400000, guid: f240b0b5e1c54c04791a7759d8c082f4, type: 2}
 --- !u!1102 &-4222014030102902961
 AnimatorState:
   serializedVersion: 5
@@ -259,7 +256,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ListAbilityData:
   - {fileID: 11400000, guid: 8443db421a0db434daff34e3d89b7291, type: 2}
-  - {fileID: 0}
 --- !u!1102 &-4051159959929271343
 AnimatorState:
   serializedVersion: 5
@@ -386,7 +382,7 @@ MonoBehaviour:
   ListAbilityData:
   - {fileID: 11400000, guid: be1ccb873f3d2d647bfc3347e7435040, type: 2}
   - {fileID: 11400000, guid: 74d09295b279ee148b0df25d0008bf0e, type: 2}
-  - {fileID: 11400000, guid: 442972487f3c5b34ca380e2050b6ccc7, type: 2}
+  - {fileID: 11400000, guid: e1237484be99be14f83a87d5bee8b1fe, type: 2}
 --- !u!1101 &-2626884569140344521
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -785,7 +781,6 @@ MonoBehaviour:
   ListAbilityData:
   - {fileID: 11400000, guid: e1237484be99be14f83a87d5bee8b1fe, type: 2}
   - {fileID: 11400000, guid: be1ccb873f3d2d647bfc3347e7435040, type: 2}
-  - {fileID: 11400000, guid: 442972487f3c5b34ca380e2050b6ccc7, type: 2}
 --- !u!114 &5428618522757929818
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -803,8 +798,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: be1ccb873f3d2d647bfc3347e7435040, type: 2}
   - {fileID: 11400000, guid: 74d09295b279ee148b0df25d0008bf0e, type: 2}
   - {fileID: 11400000, guid: e1237484be99be14f83a87d5bee8b1fe, type: 2}
-  - {fileID: 11400000, guid: 442972487f3c5b34ca380e2050b6ccc7, type: 2}
-  - {fileID: 0}
 --- !u!1101 &8238594157879008232
 AnimatorStateTransition:
   m_ObjectHideFlags: 1

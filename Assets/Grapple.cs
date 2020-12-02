@@ -28,7 +28,7 @@ public class Grapple : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (!returning)
+        if (!returning) //not returning
         {
             grappling = true;
             /*            GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
@@ -43,15 +43,11 @@ public class Grapple : MonoBehaviour
                 // Stops objects from continuing to collide and creating more joints
                 joint.enableCollision = false;
             }
-
-
         }
         else
         {
             EndHook();
         }
-
-        
     }
 
     //remove our object once it leaves the screen
