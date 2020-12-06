@@ -18,8 +18,8 @@ TagManager:
   - 
   - Enemy
   - EnemyBullet
-  - Platforms
-  - 
+  - GrappleHook
+  - PlayerBullet
   - 
   - 
   - 

@@ -28,6 +28,11 @@ public class Bullet : MonoBehaviour
             PlayerHealth health = collision.collider.GetComponent<PlayerHealth>();
             health.DamageTaken(damage);
         }
+        else if (collision.collider.CompareTag("Enemy"))
+        {
+            EnemyHealthManager health = collision.collider.GetComponent<EnemyHealthManager>();
+            health.DamageTaken(damage);
+        }
         Destroy(gameObject);
 
 

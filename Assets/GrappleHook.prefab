@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9214303172321859379}
   - component: {fileID: 5015565940622722887}
   - component: {fileID: -9001449277425965766}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GrappleHook
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,6 +59,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -83,6 +84,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!135 &9214303172321859376
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -124,7 +126,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 828ed49ea8d245a43afb38f54d76c0ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hook: {fileID: 9214303172321859378}
   hookrigidbody: {fileID: 9214303172321859379}
 --- !u!120 &-9001449277425965766
 LineRenderer:
@@ -141,6 +142,7 @@ LineRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
