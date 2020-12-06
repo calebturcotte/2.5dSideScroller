@@ -14,7 +14,7 @@ public class BossHealthManager : EnemyHealthManager
     override public void DamageTaken(int damage)
     {
         currenthealth -= damage;
-        if (currenthealth < 0)
+        if (currenthealth <= 0)
         {
             Destroy(gameObject);
             Room_Entered temproom = masterRoom.GetComponent<Room_Entered>();
