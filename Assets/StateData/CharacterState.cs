@@ -39,13 +39,13 @@ public class CharacterState : StateMachineBehaviour
         }
     }
 
-    private PlayerMovement characterControl;
-    public PlayerMovement GetCharacterControl(Animator animator) //making it such that every script can access CharacterController
+    private Player characterControl;
+    public Player GetCharacterControl(Animator animator) //making it such that every script can access CharacterController
     {
        if (characterControl == null) //only get component if it is not already set
         {
 
-             characterControl = animator.GetComponentInParent<PlayerMovement>();
+             characterControl = animator.GetComponentInParent<Player>();
 
              //characterController looks at animator
             

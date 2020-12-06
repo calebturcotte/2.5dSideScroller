@@ -13,7 +13,7 @@ public class Grapple : MonoBehaviour
 
     private bool returning;
 
-    private PlayerMovement c;
+    private Player c;
 
     private bool grappling;
     private readonly float grappleSpeed = 7f;
@@ -28,7 +28,7 @@ public class Grapple : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (!returning)
+        if (!returning) //not returning
         {
             grappling = true;
             /*            GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
@@ -43,15 +43,11 @@ public class Grapple : MonoBehaviour
                 // Stops objects from continuing to collide and creating more joints
                 joint.enableCollision = false;
             }
-
-
         }
         else
         {
             EndHook();
         }
-
-        
     }
 
     //remove our object once it leaves the screen
@@ -60,7 +56,7 @@ public class Grapple : MonoBehaviour
         //Destroy(gameObject);
     }
 
-    public void SetGrappler(Grappler grappler, PlayerMovement c, GameObject hook)
+    public void SetGrappler(Grappler grappler, Player c, GameObject hook)
     {
         if(this.c == null)
         {
@@ -125,7 +121,7 @@ public class Grapple : MonoBehaviour
         else if (grappletimecount > grappletime && !returning)
         {
             returning = true;
-            GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+            GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0); 
             GetComponent<Rigidbody>().AddForce((tempposition-tempposition2)*grappleSpeed, ForceMode.Impulse);
             grappletime = 0;
         }

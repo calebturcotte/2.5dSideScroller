@@ -9,7 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 669da85fe8aedd34bb614841de59c362, type: 3}
-  m_Name: MoveForward
+  m_Script: {fileID: 11500000, guid: c8f3296a8af13444c912c7ff11dcfccd, type: 3}
+  m_Name: Food_Salmon
   m_EditorClassIdentifier: 
-  movespeed: 5
+  type: 1
+  itemName: Salmon
+  itemDescription: A creature created by Kim Il Sung. It's fins generate movement
+    in water.
+  price: 50
+  healValue: 0

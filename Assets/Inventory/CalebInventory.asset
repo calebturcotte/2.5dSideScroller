@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 669da85fe8aedd34bb614841de59c362, type: 3}
-  m_Name: MoveForward
+  m_Script: {fileID: 11500000, guid: f464392b757368c4dbe9c46de41f6510, type: 3}
+  m_Name: CalebInventory
   m_EditorClassIdentifier: 
-  movespeed: 5
+  Container: []

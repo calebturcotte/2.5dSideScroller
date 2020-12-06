@@ -6,11 +6,12 @@ using UnityEngine;
 
 public class ManualInput : MonoBehaviour
 {
-    private PlayerMovement playerMove; //giving access to playerMovement
-
+    private Player playerMove; //giving access to Player
+  
     private void Awake()
     {
-        playerMove = this.GetComponent<PlayerMovement>();
+        playerMove = this.GetComponent<Player>();
+        //test = this.GetComponent<itemHandler>();
     }
 
     // Update is called once per frame
@@ -27,7 +28,7 @@ public class ManualInput : MonoBehaviour
         playerMove.jump = VirtualInputManager.Instance.jump;
         //a tracker for our right click button, when release we will let go of the grapple if needed
         playerMove.grappling = VirtualInputManager.Instance.grapple;
-
+        playerMove.dash = VirtualInputManager.Instance.dash;
 
     }
 }

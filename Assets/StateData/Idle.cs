@@ -7,39 +7,42 @@ public class Idle : StateData
 {
     public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-     
+        Player b = (Player)characterState.GetCharacterControl(animator);
+        Debug.Log(b.direction);
     }
     public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-        PlayerMovement c = (PlayerMovement)characterState.GetCharacterControl(animator);
+        Player c = (Player)characterState.GetCharacterControl(animator);
 
         if (c.shoot)
         {
-            animator.SetBool(PlayerMovement.TransitionParameter.shoot.ToString(), true);
+            animator.SetBool(Player.TransitionParameter.shoot.ToString(), true);
         }
 
         if (c.jump)
         {
-            animator.SetBool(PlayerMovement.TransitionParameter.jump.ToString(), true);
+            animator.SetBool(Player.TransitionParameter.jump.ToString(), true);
         }
 
         if (c.moveRight) //if input manager's moveRight = true, move
         {
-   
-            animator.SetBool(PlayerMovement.TransitionParameter.walk.ToString(), true); //moveRight --> turn on movement
+            c.direction = 0;
+            animator.SetBool(Player.TransitionParameter.walk.ToString(), true); //moveRight --> turn on movement
         }
 
         if (c.moveLeft) //if input manager's moveRight = true, move
         {
-
-            animator.SetBool(PlayerMovement.TransitionParameter.walk.ToString(), true); //moveLeft --> turn on movement
+            c.direction = 1;//set direction to LEFT
+            animator.SetBool(Player.TransitionParameter.walk.ToString(), true); //moveLeft --> turn on movement
         }
 
-        /*        if (c.grapple)
-                {
-                    animator.SetBool(PlayerMovement.TransitionParameter.grappling.ToString(), true);
-                }*/
-        animator.SetBool(PlayerMovement.TransitionParameter.grappling.ToString(), c.grapple);
+        if (c.dash)
+        {
+            animator.SetBool(Player.TransitionParameter.dash.ToString(), true);
+        }
+
+        animator.SetBool(Player.TransitionParameter.grappling.ToString(), c.grapple);
+
 
 
     }
