@@ -15,7 +15,7 @@ public class SimpleEnemyBossBehavior : MonoBehaviour
     private float bulletForce = 1f;
 
     private GameObject player;
-    private PlayerMovement enemyMove; //giving access to playerMovement
+    private Player enemyMove; //giving access to playerMovement
     private Rigidbody enemyrb;
 
     private bool patrolling;
@@ -38,7 +38,7 @@ public class SimpleEnemyBossBehavior : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
-        enemyMove = this.GetComponent<PlayerMovement>();
+        enemyMove = this.GetComponent<Player>();
         enemyrb = this.GetComponent<Rigidbody>();
         leftcheck = new Vector3(-1, -1, 0);
         rightcheck = new Vector3(1, -1, 0);

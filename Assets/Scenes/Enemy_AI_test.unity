@@ -342,9 +342,9 @@ GameObject:
   - component: {fileID: 352963958}
   - component: {fileID: 352963957}
   - component: {fileID: 352963956}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Platform (4)
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -437,7 +437,7 @@ GameObject:
   - component: {fileID: 356663188}
   - component: {fileID: 356663187}
   - component: {fileID: 356663186}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Platform
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -532,9 +532,9 @@ GameObject:
   - component: {fileID: 391861135}
   - component: {fileID: 391861134}
   - component: {fileID: 391861133}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Platform (2)
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -756,7 +756,7 @@ GameObject:
   - component: {fileID: 1022933506}
   - component: {fileID: 1022933505}
   - component: {fileID: 1022933504}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Platform (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1005,7 +1005,7 @@ GameObject:
   - component: {fileID: 1197855187}
   - component: {fileID: 1197855186}
   - component: {fileID: 1197855185}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Platform (1)
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -1100,9 +1100,9 @@ GameObject:
   - component: {fileID: 1209873138}
   - component: {fileID: 1209873137}
   - component: {fileID: 1209873136}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Platform (5)
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1784,6 +1784,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1889809748}
   offset: {x: 0, y: 0, z: -10}
+  followplayer: 0
+  roomTarget: {fileID: 0}
 --- !u!1 &1762875175 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6375065093263806378, guid: cef2dcba6bbc8f5498370c4367dfa998,
@@ -1840,7 +1842,7 @@ GameObject:
   - component: {fileID: 1838067556}
   - component: {fileID: 1838067555}
   - component: {fileID: 1838067554}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Platform (7)
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -2238,9 +2240,9 @@ GameObject:
   - component: {fileID: 2134242526}
   - component: {fileID: 2134242525}
   - component: {fileID: 2134242524}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Platform (3)
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
