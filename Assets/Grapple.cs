@@ -13,7 +13,7 @@ public class Grapple : MonoBehaviour
 
     private bool returning;
 
-    private PlayerMovement c;
+    private Player c;
 
     private bool grappling;
     private readonly float grappleSpeed = 7f;
@@ -56,7 +56,7 @@ public class Grapple : MonoBehaviour
         //Destroy(gameObject);
     }
 
-    public void SetGrappler(Grappler grappler, PlayerMovement c, GameObject hook)
+    public void SetGrappler(Grappler grappler, Player c, GameObject hook)
     {
         if(this.c == null)
         {

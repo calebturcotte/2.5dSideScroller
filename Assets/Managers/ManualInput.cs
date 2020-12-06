@@ -6,11 +6,12 @@ using UnityEngine;
 
 public class ManualInput : MonoBehaviour
 {
-    private PlayerMovement playerMove; //giving access to playerMovement
-
+    private Player playerMove; //giving access to Player
+  
     private void Awake()
     {
-        playerMove = this.GetComponent<PlayerMovement>();
+        playerMove = this.GetComponent<Player>();
+        //test = this.GetComponent<itemHandler>();
     }
 
     // Update is called once per frame

@@ -20,11 +20,11 @@ public class Shoot : StateData
     public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
 
-        PlayerMovement c = characterState.GetCharacterControl(animator);
+        Player c = characterState.GetCharacterControl(animator);
 
         if (c.jump)
         {
-            animator.SetBool(PlayerMovement.TransitionParameter.jump.ToString(), true);
+            animator.SetBool(Player.TransitionParameter.jump.ToString(), true);
         }
         
         if (c.shoot)
@@ -41,7 +41,7 @@ public class Shoot : StateData
         }
         else if (!c.shoot)
         {
-            animator.SetBool(PlayerMovement.TransitionParameter.shoot.ToString(), false);
+            animator.SetBool(Player.TransitionParameter.shoot.ToString(), false);
             return;
         }
 

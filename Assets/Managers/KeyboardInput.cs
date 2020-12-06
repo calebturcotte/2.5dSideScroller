@@ -17,8 +17,5 @@ public class KeyboardInput : Singleton<KeyboardInput>
         VirtualInputManager.Instance.dash = Input.GetButtonDown("dash");
 
 
-
-
-
     }
 }

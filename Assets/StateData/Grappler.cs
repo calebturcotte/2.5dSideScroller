@@ -21,7 +21,7 @@ public class Grappler : StateData //by having grapple here, it becomes exclusive
 
     public LineRenderer rope;
 
-    public PlayerMovement c;
+    public Player c;
 
     public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
@@ -38,7 +38,7 @@ public class Grappler : StateData //by having grapple here, it becomes exclusive
         if (c.grapple)
         {
             //c.grapple = false;
-            //animator.SetBool(PlayerMovement.transitionParameter.shoot.ToString(), false);
+            //animator.SetBool(Player.transitionParameter.shoot.ToString(), false);
             if (!grappling && grappletime > grapplecooldown)
             {
                 //grappletime = 0;
@@ -48,7 +48,7 @@ public class Grappler : StateData //by having grapple here, it becomes exclusive
 /*            if (grappletime > grapplecooldown && !grappling)
             {
                 
-                animator.SetBool(PlayerMovement.transitionParameter.shoot.ToString(), false);
+                animator.SetBool(Player.transitionParameter.shoot.ToString(), false);
                 grappletime = 0;
                 grapplecooldown = 0.25f;
                 return;
@@ -60,7 +60,7 @@ public class Grappler : StateData //by having grapple here, it becomes exclusive
         }
         else if (!c.grapple)
         {
-            animator.SetBool(PlayerMovement.TransitionParameter.grappling.ToString(), false);
+            animator.SetBool(Player.TransitionParameter.grappling.ToString(), false);
             return;
         }
 

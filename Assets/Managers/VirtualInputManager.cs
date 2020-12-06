@@ -11,4 +11,5 @@ public class VirtualInputManager : Singleton<VirtualInputManager>
     public bool grapple;
     public bool jump;
     public bool dash;
+
 }

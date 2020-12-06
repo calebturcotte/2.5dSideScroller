@@ -11,7 +11,7 @@ public class Dash : StateData
     public float dashCooldown; //0.6 is smooth, 0.7 is middle ground, 0.8 is punishing
     public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-        PlayerMovement c = characterState.GetCharacterControl(animator);
+        Player c = characterState.GetCharacterControl(animator);
 
         dashTime = 0f;
 
@@ -33,7 +33,7 @@ public class Dash : StateData
     {
         dashTime += Time.deltaTime; //iterate on each update
         if (dashTime > dashCooldown) { //when dashtime reaches/passes dashCooldown, turn it to false. You are HOLDING the state to "cooldown"
-        animator.SetBool(PlayerMovement.TransitionParameter.dash.ToString(), false);
+        animator.SetBool(Player.TransitionParameter.dash.ToString(), false);
         }
     }
 
