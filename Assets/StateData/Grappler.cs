@@ -33,7 +33,7 @@ public class Grappler : StateData //by having grapple here, it becomes exclusive
     public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
 
-        c = characterState.GetCharacterControl(animator);
+        c = (Player) characterState.GetCharacterControl(animator);
 
         if (c.grapple)
         {

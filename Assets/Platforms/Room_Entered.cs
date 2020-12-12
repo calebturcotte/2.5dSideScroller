@@ -47,7 +47,7 @@ public class Room_Entered : MonoBehaviour
 
             GameObject enemy = Instantiate(enemyBoss,new Vector3(camTarget.position.x,camTarget.position.y,0), camTarget.rotation); //firePoint.position, firePoint.rotation);
             //Should make a new script for enemy movement that is different than the one used for players
-            enemy.GetComponent<Player>().cam = ourcamera;
+            enemy.GetComponent<Character>().cam = ourcamera;
 
             enemy.GetComponent<BossHealthManager>().masterRoom = gameObject;
 

@@ -16,7 +16,7 @@ public class MoveForward : StateData
 
     public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-        Player c = characterState.GetCharacterControl(animator); //create an object of the Player Class
+        Character c = characterState.GetCharacterControl(animator); //create an object of the Player Class
 
         if (c.isColliding()) //calls on the isColliding method; if collision returns TRUE
         {    

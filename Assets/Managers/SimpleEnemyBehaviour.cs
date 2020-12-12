@@ -111,7 +111,7 @@ public class SimpleEnemyBehaviour : MonoBehaviour
                 if (hit.collider.CompareTag("Platform"))
                 {
                     Physics.Raycast(enemyrb.transform.position, new Vector3(1, 1, 0) * 4f, out hit, walldistance);
-                    Debug.Log(hit.collider);
+                    //Debug.Log(hit.collider);
                     if (hit.collider == null)
                     {
                         enemyMove.jump = true;

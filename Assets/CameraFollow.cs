@@ -26,7 +26,7 @@ public class CameraFollow : MonoBehaviour
             if (transitioning)
             {
                 //slowly move the camera towards player then fix to that point once close enough
-                transform.position += (target.position + offset-transform.position)/100;
+                transform.position += (target.position + offset-transform.position)/50;
                 if (Vector3.Distance(transform.position, target.position + offset) < 0.1) {
                     transitioning = false;
                 }

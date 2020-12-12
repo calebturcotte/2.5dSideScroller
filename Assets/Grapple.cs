@@ -36,6 +36,7 @@ public class Grapple : MonoBehaviour
 
             if(joint == null)
             {
+                //For now any moving platforms and such need a rigidbody
                 joint = gameObject.AddComponent<FixedJoint>();
                 joint.anchor = collision.contacts[0].point;
                 // conects the joint to the other object

@@ -11,7 +11,7 @@ public class Dash : StateData
     public float dashCooldown; //0.6 is smooth, 0.7 is middle ground, 0.8 is punishing
     public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-        Player c = characterState.GetCharacterControl(animator);
+        Character c = characterState.GetCharacterControl(animator);
 
         dashTime = 0f;
 
