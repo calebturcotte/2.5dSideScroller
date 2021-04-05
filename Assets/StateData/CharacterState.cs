@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class CharacterState : StateMachineBehaviour
 {
-
-
-
     public List<StateData> ListAbilityData = new List<StateData>(); //create a list of states
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        foreach(StateData d in ListAbilityData)
+        foreach (StateData d in ListAbilityData)
         {
-            d.OnEnter(this, animator, stateInfo);
+            try
+            {
+                d.OnEnter(this, animator, stateInfo);
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError("StateData: " + d + "Animator: " + animator + "Statenfo: " + stateInfo);
+            }
         }
     }
 
@@ -22,7 +26,14 @@ public class CharacterState : StateMachineBehaviour
     {
         foreach(StateData n in ListAbilityData) //goes through each item and updates
         {
-            n.UpdateAbility(characterState, animator, stateInfo);
+            try
+            {
+                n.UpdateAbility(characterState, animator, stateInfo);
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError("StateData: " + n + "Animator: " + animator + "Statenfo: " + stateInfo);
+            }
         }
     }
 
@@ -35,7 +46,14 @@ public class CharacterState : StateMachineBehaviour
     {
         foreach (StateData d in ListAbilityData)
         {
-            d.OnExit(this, animator, stateInfo);
+            try
+            {
+                d.OnExit(this, animator, stateInfo);
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError("StateData: " + d + "Animator: " + animator + "Statenfo: " + stateInfo);
+            }
         }
     }
 
