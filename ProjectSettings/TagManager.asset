@@ -7,6 +7,7 @@ TagManager:
   - Platform
   - Enemy
   - Collectible
+  - MovingPlatform
   layers:
   - Default
   - TransparentFX
@@ -20,8 +21,8 @@ TagManager:
   - EnemyBullet
   - GrappleHook
   - PlayerBullet
-  - 
-  - 
+  - Background Image
+  - Player
   - 
   - 
   - 

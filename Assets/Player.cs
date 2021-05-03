@@ -13,10 +13,10 @@ public class Player : Character
     public InventoryObject inventory;
     public Vector3 mousePos;
 
- 
+    LayerMask movingPlatform = 12;
     public override void Update()
     {
-       
+
         //currently gives position of mouse on camera
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
         mousePos = Input.mousePosition; //gives position where camera bottom left corner is 0,0
@@ -34,10 +34,30 @@ public class Player : Character
     private void Awake()
     {
 
-        
+
 
     }
 
+    private void OnCollisionEnter(Collision collision) //for universal character collision interactions, see character script
+    {
+
+
+        if (collision.gameObject.tag == "MovingPlatform" && IsGrounded()) // if the collision is with a platform and you're ON TOP
+        {
+            transform.SetParent(collision.gameObject.transform);
+        }
+        else
+        {
+            Debug.Log(collision.gameObject.tag);
+            transform.SetParent(null);
+        }
+
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        this.transform.SetParent(null); //unparent character when not colliding with anything
+    }
 
     public override void OnTriggerEnter(Collider other)
     {
@@ -58,3 +78,4 @@ public class Player : Character
 
 
 }
+
