@@ -14,6 +14,7 @@ public class Player : Character
     public Vector3 mousePos;
 
     private GameObject lastPlatform;
+    public GameObject grappleObject;
 
     LayerMask movingPlatform = 12;
     public override void Update()

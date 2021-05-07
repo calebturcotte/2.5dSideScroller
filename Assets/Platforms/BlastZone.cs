@@ -21,9 +21,9 @@ public class BlastZone : MonoBehaviour
         {
             //Instantiate a particle effect
             Instantiate(particles, other.transform.position, Quaternion.identity);
+
             //destroy any enemies that hit the blastzone
             Destroy(other.gameObject);
-            Debug.Log(other.tag);
 
 
         }
@@ -33,14 +33,18 @@ public class BlastZone : MonoBehaviour
             Instantiate(particles, other.transform.position, Quaternion.identity);
 
             //damage player and move them back to last platform they were on
-            Debug.Log(other.tag);
             PlayerHealth health = other.GetComponent<PlayerHealth>();
             health.DamageTaken(damage);
 
             Player player = other.GetComponent<Player>();
-            Debug.Log(player.getLastPlatform().transform.localScale.y);
             other.gameObject.transform.position = player.getLastPlatform().transform.position + new Vector3(0, player.getLastPlatform().transform.localScale.y + 0.5f, 0);
-            
+
+            //delete the grapple hook if it exists
+            if(player.grappleObject != null)
+            {
+              player.grappleObject.GetComponent<Grapple>().EndHook();
+            }
+
             //reset the velocity of the object
             player.BiggRigid.velocity = new Vector3(0, 0, 0);
         }
