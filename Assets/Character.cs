@@ -133,7 +133,7 @@ public class Character : MonoBehaviour
         Debug.DrawRay(box.bounds.center, Vector3.right * directionModifier * 0.1f, Color.cyan);
 
         bool boxCastHit = Physics.BoxCast(box.bounds.center, transform.localScale / 2 + correction, Vector3.right * directionModifier, Quaternion.identity, 0.1f, ~myMask); //seems to be the most precise way to do this so far
-        Debug.Log(boxCastHit);
+        //Debug.Log(boxCastHit);
 
         return boxCastHit; //return the value of boxCastHit
     }
