@@ -31,7 +31,7 @@ public class Character : MonoBehaviour
     public bool grounded;
     public bool dash;
     public bool getItem;
-
+    public bool pause;
 
     public int direction = 0; //you always start off facing RIGHT
 
@@ -43,31 +43,35 @@ public class Character : MonoBehaviour
     public Vector3 aimingposition;
     public Vector3 movement;
 
-    
+
 
     public virtual void Update()
     {
 
-        //Debug.Log("Player Rotation: " + transform.rotation);
 
+
+    }
+
+    public virtual void FixedUpdate()
+    {
         //Collision Detection
         if (isColliding()) //while the character is colliding
         {
-                //this aint ever accessed anyways, isColliding ALWAYS returns false
-                animator.SetBool(TransitionParameter.colliding.ToString(), true); //colliding is TRUE
-                animator.SetBool(TransitionParameter.walk.ToString(), false); //turn of walking (prevents clipping) note: will start a cycle between idle and walk states     
-            
+            //this aint ever accessed anyways, isColliding ALWAYS returns false
+            animator.SetBool(TransitionParameter.colliding.ToString(), true); //colliding is TRUE
+            animator.SetBool(TransitionParameter.walk.ToString(), false); //turn of walking (prevents clipping) note: will start a cycle between idle and walk states     
+
         }
         else
         {
             animator.SetBool(Character.TransitionParameter.colliding.ToString(), false);
-            
+
         }
 
         //Ground Detection
         if (IsGrounded()) //if the player is touching the ground
         {
-            
+
             animator.SetBool(Character.TransitionParameter.grounded.ToString(), true);
             //Debug.Log("Grounded!");
         }
@@ -76,10 +80,7 @@ public class Character : MonoBehaviour
             animator.SetBool(Character.TransitionParameter.grounded.ToString(), false);
             //Debug.Log("Not");
         }
-
-        //MyCollisions();
     }
-
 
     public Rigidbody BiggRigid
     {
@@ -130,10 +131,10 @@ public class Character : MonoBehaviour
             directionModifier = -1;
         }
         
-        Debug.DrawRay(box.bounds.center, Vector3.right * directionModifier * 0.1f, Color.cyan);
+        //Debug.DrawRay(box.bounds.center, Vector3.right * directionModifier * 0.1f, Color.cyan);
 
         bool boxCastHit = Physics.BoxCast(box.bounds.center, transform.localScale / 2 + correction, Vector3.right * directionModifier, Quaternion.identity, 0.1f, ~myMask); //seems to be the most precise way to do this so far
-        Debug.Log(boxCastHit);
+        //Debug.Log(boxCastHit);
 
         return boxCastHit; //return the value of boxCastHit
     }
@@ -142,26 +143,12 @@ public class Character : MonoBehaviour
 
     public bool IsGrounded() //Ground collision checker
     {
-        Transform temp;
 
-        if(transform.parent == null)
-        {
-            temp = transform;
-        } else
-        {
-            temp = transform.parent;
-        }
 
-        //float extraHeight = 0.08f;
-        //int layer = 13;
-        //RaycastHit m_Hit;
-        Vector3 correction = new Vector3((transform.localScale.x / 2), 0, 0);
         BoxCollider box = GetComponent<BoxCollider>(); //get component of the box collider
-        bool boxCastHit = Physics.BoxCast(box.bounds.center + (Vector3.up * 0.1f), transform.localScale/2 + correction, -temp.up, Quaternion.identity, transform.localScale.y/4);
+        bool boxCastHit = Physics.BoxCast(box.bounds.center + (Vector3.up * 0.1f), transform.localScale/2, Vector3.down, Quaternion.identity, transform.localScale.y/4);
 
-        Debug.DrawRay(box.bounds.center + (Vector3.up * 0.1f), -temp.up * (transform.localScale.y/4), Color.red);
-       
-        
+        //Debug.DrawRay(box.bounds.center + (Vector3.up * 0.1f), Vector3.down * (transform.localScale.y/4), Color.red);
         //Debug.Log(boxCastHit);
         //add 0.1f to initial boxcast. IF we just use the center, the boxcast will start as intersecting with itself = FALSE
         return boxCastHit; //if raycast does not touch anything within this distance, player is NOT grounded
