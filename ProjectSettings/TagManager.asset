@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Collectible
   - MovingPlatform
+  - PlayerBullet
   layers:
   - Default
   - TransparentFX

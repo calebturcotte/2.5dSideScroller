@@ -11,6 +11,7 @@ public class Bullet : MonoBehaviour
 
     private float m_Lifespan = 1f; //bullet lifespan, in seconds
     public int damage;
+    public Rigidbody bulletRB;
 
     void Start()
     {
@@ -18,24 +19,22 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject, m_Lifespan);
     }
 
-    void OnCollisionEnter(Collision collision)
+    public void OnCollisionEnter(Collision collision)
     {
         //collision lets us access values of object that we hit
         //GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity); //can add an effect or new animation after hit
         //Destroy(effect, 5f);
-        if (collision.collider.CompareTag("Player"))
+        //Physics.IgnoreCollision(GetComponent<Collider>(), collision.collider); //ignore the COLLISION physics from the bullet and its target
+        Collider bulletCollider = bulletRB.GetComponent<Collider>();
+
+        if (collision.collider.CompareTag("Player") || collision.collider.CompareTag("Enemy"))
         {
-            PlayerHealth health = collision.collider.GetComponent<PlayerHealth>();
+            Character health = collision.collider.GetComponent<Character>();
             health.DamageTaken(damage);
-        }
-        else if (collision.collider.CompareTag("Enemy"))
-        {
-            EnemyHealthManager health = collision.collider.GetComponent<EnemyHealthManager>();
-            health.DamageTaken(damage);
+            Physics.IgnoreCollision(bulletCollider, collision.collider, true);
+
         }
         Destroy(gameObject);
-
-
     }
 
     //remove our object once it leaves the screen

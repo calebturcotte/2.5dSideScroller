@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 434887321928083940}
   - component: {fileID: 416873224185599161}
   - component: {fileID: 6129078924519168131}
-  - component: {fileID: 8502917976532835322}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -115,7 +114,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0492798784ebf2d4099534e699c3406e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  characterMaxHealth: 0
+  currentHealth: 0
   moveRight: 0
   moveLeft: 0
   grapple: 0
@@ -127,11 +127,13 @@ MonoBehaviour:
   getItem: 0
   direction: 0
   animator: {fileID: 416873224185599161}
-  cam: {fileID: 0}
   aimingposition: {x: 0, y: 0, z: 0}
   movement: {x: 0, y: 0, z: 0}
+  cam: {fileID: 0}
+  healthBar: {fileID: 0}
   inventory: {fileID: 11400000, guid: 00b283b7b3ebab446a843d376b6b2798, type: 2}
   mousePos: {x: 0, y: 0, z: 0}
+  pauseMenuUI: {fileID: 0}
 --- !u!65 &434887321928083940
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -176,17 +178,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d17191b9e8087249acd3d0af8d4bbe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8502917976532835322
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8502917976532835298}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d799688d4ca9709448f4b7ed945b8ed5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
-  maxHealth: 100

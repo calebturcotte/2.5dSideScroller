@@ -14,18 +14,7 @@ public class Dash : StateData
         Character c = characterState.GetCharacterControl(animator);
 
         dashTime = 0f;
-
-        if (c.direction == 0)
-        {
-            characterState.GetCharacterControl(animator).BiggRigid.AddForce(Vector3.right * dashSpeed, ForceMode.Impulse);
-
-        }
-        else if (c.direction == 1)
-        {
-            characterState.GetCharacterControl(animator).BiggRigid.AddForce(-Vector3.right * dashSpeed, ForceMode.Impulse);
-        }
-            
-
+        characterState.GetCharacterControl(animator).BiggRigid.AddForce(Vector3.right * dashSpeed * c.direction, ForceMode.Impulse);
 
     }
 

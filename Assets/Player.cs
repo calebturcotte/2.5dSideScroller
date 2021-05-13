@@ -7,8 +7,10 @@ using UnityEngine;
 
 public class Player : Character
 {
+    public Camera cam;
+    public HealthBar healthBar;
     /**
-     * Our Handler for player movement
+     * Our handler for player-specific properties
      */
     public InventoryObject inventory;
     public Vector3 mousePos;
@@ -16,6 +18,13 @@ public class Player : Character
 
     public static bool GamePaused = false;
     public GameObject pauseMenuUI;
+
+    public override void Awake()
+    {
+        currentHealth = characterMaxHealth;
+        healthBar.SetMaxHealth(characterMaxHealth);
+    }
+
     public override void Update()
     {
 
@@ -34,7 +43,7 @@ public class Player : Character
         {
             if (GamePaused == false)
             {
-                Debug.Log(GamePaused);
+
                 pauseMenuUI.SetActive(true);
                 GamePaused = true;
                 Time.timeScale = 0;
@@ -42,7 +51,7 @@ public class Player : Character
             }
             else if (GamePaused == true)
             {
-                Debug.Log(GamePaused);
+
                 pauseMenuUI.SetActive(false);
                 GamePaused = false;
                 Time.timeScale = 1;
@@ -53,14 +62,9 @@ public class Player : Character
     }
 
 
-    private void Awake()
-    {
 
 
-
-    }
-
-    private void OnCollisionEnter(Collision collision) //for universal character collision interactions, see character script
+    public override void OnCollisionEnter(Collision collision) //for universal character collision interactions, see character script
     {
 
 
@@ -80,7 +84,7 @@ public class Player : Character
         transform.SetParent(null); //unparent character when not colliding with anything
     }
 
-    public override void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         var item = other.GetComponent<Item>();
 
