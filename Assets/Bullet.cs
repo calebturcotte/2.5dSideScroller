@@ -19,7 +19,7 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject, m_Lifespan);
     }
 
-    public void OnCollisionEnter(Collision collision)
+    public void OnTriggerEnter(Collider collider)
     {
         //collision lets us access values of object that we hit
         //GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity); //can add an effect or new animation after hit
@@ -27,14 +27,13 @@ public class Bullet : MonoBehaviour
         //Physics.IgnoreCollision(GetComponent<Collider>(), collision.collider); //ignore the COLLISION physics from the bullet and its target
         Collider bulletCollider = bulletRB.GetComponent<Collider>();
 
-        if (collision.collider.CompareTag("Player") || collision.collider.CompareTag("Enemy"))
+        if (collider.CompareTag("Player") || collider.CompareTag("Enemy"))
         {
-            Character health = collision.collider.GetComponent<Character>();
+            Character health = collider.GetComponent<Character>();
             health.DamageTaken(damage);
-            Physics.IgnoreCollision(bulletCollider, collision.collider, true);
-
+            Physics.IgnoreCollision(bulletCollider, collider, true);
         }
-        Destroy(gameObject);
+        Destroy(gameObject); //destroy the bullet regardless of what it hits
     }
 
     //remove our object once it leaves the screen

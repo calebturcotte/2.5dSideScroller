@@ -63,8 +63,12 @@ public class FlyingEnemyAI : Character
 
         } else //if patrolling is false, engage the player
         {
+            if(playerRB != null) //if player has not been drestroyed
+            {
             Engage();
+            }
         }
+
     }
 
     void Engage() //fights with player; should be calling on the shoot script
@@ -105,6 +109,11 @@ public class FlyingEnemyAI : Character
             {
                 direction = -1; //otherwise face left, face the player
             }
+        }
+
+        if(collision.collider.CompareTag("Enemy"))
+        {
+            Physics.IgnoreCollision(this.GetComponent<Collider>(), collision.collider); //ignore collision with fellow enemies
         }
         //rigidbodies are in effect here so enemy will be pushed back and might fight the physics
         //could add grounded conditions here
@@ -152,7 +161,7 @@ public class FlyingEnemyAI : Character
     public override bool IsColliding()  //collision detection method 
     {
         BoxCollider box = GetComponent<BoxCollider>(); //get component of the box collider
-        LayerMask myMask = LayerMask.GetMask("PlayerBullet");// transparent layer we want to avoid stopping for, add other Strings inside brackets for other layers we may need to ignore
+        LayerMask myMask = (8 & 11);// transparent layer we want to avoid stopping for, add other Strings inside brackets for other layers we may need to ignore
         Vector3 correction = new Vector3(0, 0.1f, 0);
         bool boxCastHit = Physics.BoxCast(box.bounds.center, box.bounds.extents - correction, Vector3.right * direction, Quaternion.identity, 0.1f, ~myMask); //seems to be the most precise way to do this so far
         //boxcase should be almost as big as the box -0.1f from the top and bottom to avoid ground collision errors

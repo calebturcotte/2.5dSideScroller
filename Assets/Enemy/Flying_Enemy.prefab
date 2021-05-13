@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 4260700584938764007}
   - component: {fileID: 5481468650111170963}
   - component: {fileID: 114694336827916889}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Flying_Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -144,20 +144,14 @@ MonoBehaviour:
   animator: {fileID: 4260700584938764007}
   aimingposition: {x: 0, y: 0, z: 0}
   movement: {x: 0, y: 0, z: 0}
-  patrolling: 0
-  airborn: 0
-  collided: 0
-  moveDist: 0
-  maxMoveDist: 3
-  moveSpeed: 3
+  maxMoveDist: 4
+  moveSpeed: 4
   shootThreshold: 5
-  enemyRB: {fileID: 0}
-  playerRB: {fileID: 0}
   bulletPrefab: {fileID: 4591219670736000821, guid: 201ca1f3005f142468849259f7f73855,
     type: 3}
-  bulletForce: 1.5
-  bulletCount: 0
-  bulletTime: 0.8
+  bulletTimer: 0
+  bulletCooldown: 0.6
+  bulletForce: 1.8
 --- !u!54 &114694336827916889
 Rigidbody:
   m_ObjectHideFlags: 0

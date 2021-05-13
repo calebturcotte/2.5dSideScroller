@@ -18,11 +18,13 @@ public class Player : Character
 
     public static bool GamePaused = false;
     public GameObject pauseMenuUI;
+    public GameObject gameOver;
 
     public override void Awake()
     {
         currentHealth = characterMaxHealth;
         healthBar.SetMaxHealth(characterMaxHealth);
+               
     }
 
     public override void Update()
@@ -62,7 +64,15 @@ public class Player : Character
     }
 
 
-
+    public override void DamageTaken(int damage)
+    {
+        currentHealth -= damage;
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject);
+            gameOver.SetActive(true);
+        }
+    }
 
     public override void OnCollisionEnter(Collision collision) //for universal character collision interactions, see character script
     {
