@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossHealthManager : EnemyHealthManager
+public class BossHealthManager : Character
 {
     /**
      * Subclass of EnemyHealth Manager that calls any events if enemy is destroyed
@@ -11,10 +11,11 @@ public class BossHealthManager : EnemyHealthManager
     public GameObject masterRoom;
 
     //Override for 
-    override public void DamageTaken(int damage)
+    public override void DamageTaken(int damage)
     {
-        currenthealth -= damage;
-        if (currenthealth <= 0)
+        base.DamageTaken(damage);
+
+        if (currentHealth <= 0)
         {
             Destroy(gameObject);
             Room_Entered temproom = masterRoom.GetComponent<Room_Entered>();

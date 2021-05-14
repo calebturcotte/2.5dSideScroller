@@ -7,8 +7,10 @@ using UnityEngine;
 
 public class Player : Character
 {
+    public Camera cam;
+    public HealthBar healthBar;
     /**
-     * Our Handler for player movement
+     * Our handler for player-specific properties
      */
     public InventoryObject inventory;
     public Vector3 mousePos;
@@ -16,7 +18,17 @@ public class Player : Character
     private GameObject lastPlatform;
     public GameObject grappleObject;
 
-    LayerMask movingPlatform = 12;
+    public static bool GamePaused = false;
+    public GameObject pauseMenuUI;
+    public GameObject gameOver;
+
+    public override void Awake()
+    {
+        currentHealth = characterMaxHealth;
+        healthBar.SetMaxHealth(characterMaxHealth);
+               
+    }
+
     public override void Update()
     {
 
@@ -28,20 +40,45 @@ public class Player : Character
         aimingposition = (mousePos - Camera.main.WorldToScreenPoint(transform.position)).normalized * 1f;
         aimingposition.z = 0;
 
+
+      
+
+        if (VirtualInputManager.Instance.pause)
+        {
+            if (GamePaused == false)
+            {
+
+                pauseMenuUI.SetActive(true);
+                GamePaused = true;
+                Time.timeScale = 0;
+
+            }
+            else if (GamePaused == true)
+            {
+
+                pauseMenuUI.SetActive(false);
+                GamePaused = false;
+                Time.timeScale = 1;
+            }
+        }
+
         base.Update();
-
-
     }
 
 
-    private void Awake()
+    public override void DamageTaken(int damage)
     {
-
-
-
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
+        if (currentHealth <= 0)
+        {
+            Time.timeScale = 0f;
+            gameOver.SetActive(true);
+            //Destroy(gameObject);
+        }
     }
 
-    private void OnCollisionEnter(Collision collision) //for universal character collision interactions, see character script
+    public override void OnCollisionEnter(Collision collision) //for universal character collision interactions, see character script
     {
 
         bool grounded = IsGrounded();
@@ -52,7 +89,6 @@ public class Player : Character
         }
         else
         {
-            //Debug.Log(collision.gameObject.tag);
             transform.SetParent(null);
         }
 
@@ -67,10 +103,10 @@ public class Player : Character
 
     private void OnCollisionExit(Collision collision)
     {
-        this.transform.SetParent(null); //unparent character when not colliding with anything
+        transform.SetParent(null); //unparent character when not colliding with anything
     }
 
-    public override void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         var item = other.GetComponent<Item>();
 
