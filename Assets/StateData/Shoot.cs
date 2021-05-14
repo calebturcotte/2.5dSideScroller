@@ -20,7 +20,7 @@ public class Shoot : StateData
     public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
 
-        Player c = characterState.GetCharacterControl(animator);
+        Character c = characterState.GetCharacterControl(animator);
 
         if (c.jump)
         {

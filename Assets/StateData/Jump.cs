@@ -13,7 +13,7 @@ public class Jump : StateData
 
     public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-        Player c = characterState.GetCharacterControl(animator); //for jumping upon entering the state
+        Character c = characterState.GetCharacterControl(animator); //for jumping upon entering the state
 
         if (!c.IsGrounded())
         {
@@ -27,7 +27,7 @@ public class Jump : StateData
 
     public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-        Player c = characterState.GetCharacterControl(animator);
+        Character c = characterState.GetCharacterControl(animator);
         if (!c.IsGrounded()) //if grounded BECOMES true during any aerial frame
         {
             animator.SetBool(Player.TransitionParameter.jump.ToString(), false);
@@ -41,7 +41,7 @@ public class Jump : StateData
 
     public void PerformJump(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-        Player c = characterState.GetCharacterControl(animator);
+        Character c = characterState.GetCharacterControl(animator);
         c.BiggRigid.AddForce(Vector3.up * jumpForce, ForceMode.Impulse); //Add force to the rigid body; vector * magnitude of jump
     }
 

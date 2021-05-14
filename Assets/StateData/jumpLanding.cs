@@ -10,7 +10,7 @@ public class JumpLanding : StateData
  
     public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-        Player c = characterState.GetCharacterControl(animator);
+        Character c = characterState.GetCharacterControl(animator);
         animator.SetBool(Player.TransitionParameter.jumpLanding.ToString(), true);
         animator.SetBool(Player.TransitionParameter.jumpTransition.ToString(), false);
     }

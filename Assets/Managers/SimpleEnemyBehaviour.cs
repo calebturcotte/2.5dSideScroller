@@ -15,8 +15,9 @@ public class SimpleEnemyBehaviour : MonoBehaviour
     private float bulletForce = 1f;
 
     private GameObject player;
-    private Player enemyMove; //giving access to player
+    private Character enemyMove; //giving access to character
     private Rigidbody enemyrb;
+    public Rigidbody playerRB;
 
     private bool patrolling;
 
@@ -38,7 +39,7 @@ public class SimpleEnemyBehaviour : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
-        enemyMove = this.GetComponent<Player>();
+        enemyMove = this.GetComponent<Character>();
         enemyrb = this.GetComponent<Rigidbody>();
         leftcheck = new Vector3(-1, -1, 0);
         rightcheck = new Vector3(1, -1, 0);
@@ -55,9 +56,10 @@ public class SimpleEnemyBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        enemyMove.jump = false;
         if (patrolling)
         {
+            //Enemy moves in left or right directions
             if (movestate)
             {
                 enemyMove.moveRight = true;
@@ -69,103 +71,14 @@ public class SimpleEnemyBehaviour : MonoBehaviour
                 enemyMove.moveLeft = true;
             }
 
-            if(!Physics.Raycast(enemyrb.transform.position - new Vector3(0.5f, 0, 0), leftcheck * 3f, out hit, 2))
-            {
-/*                Debug.Log(hit);
-                Debug.Log(hit.collider);*/
-                if (hit.collider == null) // change direction if no platform is found
-                {
-                    movestate = true;
-                }
+            checkFront();
 
-            }
-            else if(!Physics.Raycast(enemyrb.transform.position + new Vector3(0.5f, 0, 0), rightcheck * 3f, out hit, 2))
-            {
-                if (hit.collider == null) // change direction if no platform is found
-                {
-                    movestate = false;
-                }
-            }
-            else if (Physics.Raycast(enemyrb.transform.position, Vector3.left * 2f, out hit, walldistance))
-            {
-                if (hit.collider.CompareTag("Platform"))
-                {
-                    Physics.Raycast(enemyrb.transform.position, new Vector3(-1, 1, 0) * 3f, out hit, walldistance);
-                    if (hit.collider == null)
-                    {
-                        enemyMove.jump = true;
-                    }
-                    else
-                    {
-                        movestate = true;
-                    }
-
-                }
-                else if (!hit.collider.CompareTag("Player"))
-                {
-                    movestate = true;
-                }
-            }
-            else if (Physics.Raycast(enemyrb.transform.position, Vector3.right * 3f, out hit, walldistance))
-            {
-                if (hit.collider.CompareTag("Platform"))
-                {
-                    Physics.Raycast(enemyrb.transform.position, new Vector3(1, 1, 0) * 4f, out hit, walldistance);
-                    Debug.Log(hit.collider);
-                    if (hit.collider == null)
-                    {
-                        enemyMove.jump = true;
-                    }
-                    else
-                    {
-                        movestate = false;
-                    }
-                }
-                else if (!hit.collider.CompareTag("Player"))
-                {
-                    movestate = false;
-                }
-            }
-            else if (Physics.Raycast(enemyrb.transform.position, Vector3.left * 3f, out hit, spotdistance, ~IgnoredEnemy))
-            {
-
-                if (hit.collider.CompareTag("Player"))
-                {
-                    patrolling = false;
-                }
-            }
-            else if (Physics.Raycast(enemyrb.transform.position, Vector3.right * 3f, out hit, spotdistance, ~IgnoredEnemy))
-            {
-
-                if (hit.collider.CompareTag("Player"))
-                {
-                    patrolling = false;
-                }
-            }
-            else if (Physics.Raycast(enemyrb.transform.position, new Vector3(-1,1,0) * 3f, out hit, spotdistance, ~IgnoredEnemy))
-            {
-
-                if (hit.collider.CompareTag("Player"))
-                {
-                    patrolling = false;
-                }
-            }
-            else if (Physics.Raycast(enemyrb.transform.position, new Vector3(1,1,0) * 3f, out hit, spotdistance, ~IgnoredEnemy))
-            {
-
-                if (hit.collider.CompareTag("Player"))
-                {
-                    patrolling = false;
-                }
-            }
-/*            Debug.DrawRay(enemyrb.transform.position - new Vector3(0.5f,0,0), leftcheck, Color.red, 0.5f);
-            Debug.DrawRay(enemyrb.transform.position + new Vector3(0.5f, 0, 0), rightcheck, Color.red, 0.5f);*/
-
+            /*            Debug.DrawRay(enemyrb.transform.position - new Vector3(0.5f, 0, 0), leftcheck, Color.red, 0.5f);
+                        Debug.DrawRay(enemyrb.transform.position + new Vector3(0.5f, 0, 0), rightcheck, Color.red, 0.5f);*/
         }
         else
         {
 /*            Debug.DrawRay(enemyrb.transform.position, Vector3.left * 3f, Color.red, 0.5f);*/
-
             Vector3 distance = enemyrb.transform.position - player.GetComponent<Rigidbody>().transform.position;
             if (Vector2.Distance(enemyrb.transform.position, player.GetComponent<Rigidbody>().transform.position) < gonedistance)
             {
@@ -194,7 +107,6 @@ public class SimpleEnemyBehaviour : MonoBehaviour
                         bulletcount = 0;
                     }
                     bulletcount += Time.deltaTime;
-
                 }
 
             }
@@ -209,7 +121,69 @@ public class SimpleEnemyBehaviour : MonoBehaviour
                 }
             }
         }
+    }
 
+    /**
+     * Check areas in front of the Enemy and update State Accordingly
+     */
+    void checkFront()
+    {
+        Vector3 facing;
+        Vector3 groundCheck;
+        Vector3 platformCheck;
 
+        //set our variables based on direction we face
+        if (movestate)
+        {
+            facing = Vector3.right;
+            groundCheck = new Vector3(1, 1, 0);
+            platformCheck = rightcheck;
+        }
+        else
+        {
+            facing = Vector3.left;
+            groundCheck = new Vector3(-1, 1, 0);
+            platformCheck = leftcheck;
+        }
+
+        Debug.DrawRay(enemyrb.transform.position, facing * 2f, Color.red);
+        Debug.DrawRay(enemyrb.transform.position, groundCheck * 3f, Color.red);
+
+        Vector3 playerLocation = playerRB.transform.position - enemyrb.transform.position; 
+
+        if (Physics.Raycast(enemyrb.transform.position, facing * 2f, out hit, walldistance))
+        {
+            if (hit.collider.CompareTag("Platform"))
+            {
+                if(Physics.Raycast(enemyrb.transform.position, groundCheck * 3f, out hit, walldistance))
+                {
+                    movestate = !movestate;
+                }
+                else
+                {
+                    //Debug.Log(enemyMove);
+                    enemyMove.jump = true;
+                }
+            }
+            else if (!hit.collider.CompareTag("Player"))
+            {
+                movestate = !movestate;
+            }
+        }
+        else if (!Physics.Raycast(enemyrb.transform.position, platformCheck * 3f, out hit, 2))
+        {
+            if (hit.collider == null) // change direction if no platform is found at ground level
+            {
+                movestate = !movestate;
+            }
+
+        }
+        else if (Physics.Raycast(enemyrb.transform.position, playerLocation, out hit, spotdistance, ~IgnoredEnemy))
+        {
+            if (hit.collider.CompareTag("Player"))
+            {
+                patrolling = false;
+            }
+        }
     }
 }

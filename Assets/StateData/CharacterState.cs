@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class CharacterState : StateMachineBehaviour
 {
-
-
-
     public List<StateData> ListAbilityData = new List<StateData>(); //create a list of states
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        foreach(StateData d in ListAbilityData)
+        foreach (StateData d in ListAbilityData)
         {
-            d.OnEnter(this, animator, stateInfo);
+            try
+            {
+                d.OnEnter(this, animator, stateInfo);
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError("StateData: " + d + "Animator: " + animator + "Statenfo: " + stateInfo);
+            }
         }
     }
 
@@ -22,7 +26,14 @@ public class CharacterState : StateMachineBehaviour
     {
         foreach(StateData n in ListAbilityData) //goes through each item and updates
         {
-            n.UpdateAbility(characterState, animator, stateInfo);
+            try
+            {
+                n.UpdateAbility(characterState, animator, stateInfo);
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError("StateData: " + n + "Animator: " + animator + "Statenfo: " + stateInfo);
+            }
         }
     }
 
@@ -35,17 +46,24 @@ public class CharacterState : StateMachineBehaviour
     {
         foreach (StateData d in ListAbilityData)
         {
-            d.OnExit(this, animator, stateInfo);
+            try
+            {
+                d.OnExit(this, animator, stateInfo);
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError("StateData: " + d + "Animator: " + animator + "Statenfo: " + stateInfo);
+            }
         }
     }
 
-    private Player characterControl;
-    public Player GetCharacterControl(Animator animator) //making it such that every script can access CharacterController
+    private Character characterControl;
+    public Character GetCharacterControl(Animator animator) //making it such that every script can access CharacterController
     {
        if (characterControl == null) //only get component if it is not already set
         {
 
-             characterControl = animator.GetComponentInParent<Player>();
+             characterControl = animator.GetComponentInParent<Character>();
 
              //characterController looks at animator
             
