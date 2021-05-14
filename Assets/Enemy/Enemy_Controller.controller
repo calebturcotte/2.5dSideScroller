@@ -38,7 +38,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ListAbilityData:
-  - {fileID: 11400000, guid: 74d09295b279ee148b0df25d0008bf0e, type: 2}
+  - {fileID: 11400000, guid: 504ee1d9dfe6bd5498b245fea67ea1c2, type: 2}
   - {fileID: 11400000, guid: be1ccb873f3d2d647bfc3347e7435040, type: 2}
 --- !u!1101 &-6208457304578600440
 AnimatorStateTransition:
@@ -79,10 +79,10 @@ AnimatorStateMachine:
     m_Position: {x: 510, y: 380, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3362409169866935092}
-    m_Position: {x: 510, y: 530, z: 0}
+    m_Position: {x: 510, y: 520, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -419017933604349621}
-    m_Position: {x: 810, y: 380, z: 0}
+    m_Position: {x: 800, y: 380, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5122742052576460243}
     m_Position: {x: 810, y: 530, z: 0}

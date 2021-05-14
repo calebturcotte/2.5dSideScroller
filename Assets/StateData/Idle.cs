@@ -26,13 +26,13 @@ public class Idle : StateData
 
         if (c.moveRight) //if input manager's moveRight = true, move
         {
-            c.direction = 0;
+            c.direction = 1; //set direction to RIGHT
             animator.SetBool(Character.TransitionParameter.walk.ToString(), true); //moveRight --> turn on movement
         }
 
         if (c.moveLeft) //if input manager's moveRight = true, move
         {
-            c.direction = 1;//set direction to LEFT
+            c.direction = -1; //set direction to LEFT
             animator.SetBool(Character.TransitionParameter.walk.ToString(), true); //moveLeft --> turn on movement
         }
 
