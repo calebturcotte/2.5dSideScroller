@@ -138,7 +138,6 @@ public class Character : MonoBehaviour
         Vector3 correction = new Vector3(0, 0.1f, 0);
         bool boxCastHit = Physics.BoxCast(box.bounds.center, box.bounds.extents - correction, Vector3.right * direction, Quaternion.identity, 0.1f, ~myMask); //seems to be the most precise way to do this so far
 
-
         return boxCastHit; //return the value of boxCastHit
     }
 

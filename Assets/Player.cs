@@ -15,6 +15,8 @@ public class Player : Character
     public InventoryObject inventory;
     public Vector3 mousePos;
 
+    private GameObject lastPlatform;
+    public GameObject grappleObject;
 
     public static bool GamePaused = false;
     public GameObject pauseMenuUI;
@@ -79,14 +81,22 @@ public class Player : Character
     public override void OnCollisionEnter(Collision collision) //for universal character collision interactions, see character script
     {
 
+        bool grounded = IsGrounded();
 
-        if (collision.gameObject.tag == "MovingPlatform" && IsGrounded()) // if the collision is with a platform and you're ON TOP
+        if (collision.gameObject.tag == "MovingPlatform" && grounded) // if the collision is with a platform and you're ON TOP
         {
             transform.SetParent(collision.gameObject.transform);
         }
         else
         {
             transform.SetParent(null);
+        }
+
+
+        //save the last platform we were on
+        if((collision.gameObject.CompareTag("MovingPlatform") || collision.gameObject.CompareTag("Platform")) && grounded)
+        {
+            lastPlatform = collision.gameObject;
         }
 
     }
@@ -111,6 +121,13 @@ public class Player : Character
     public override void OnApplicationQuit()
     {
         inventory.Container.Clear();
+    }
+
+
+    //Returns the last platform the Player stood on
+    public GameObject getLastPlatform()
+    {
+        return lastPlatform;
     }
 
 

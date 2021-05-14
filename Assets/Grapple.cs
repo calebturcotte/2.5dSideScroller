@@ -13,7 +13,7 @@ public class Grapple : MonoBehaviour
 
     private bool returning;
 
-    private Player c;
+    private Player player;
 
     private bool grappling;
     private readonly float grappleSpeed = 7f;
@@ -59,9 +59,10 @@ public class Grapple : MonoBehaviour
 
     public void SetGrappler(Grappler grappler, Player c, GameObject hook)
     {
-        if(this.c == null)
+        if(this.player == null)
         {
-            this.c = c;
+            this.player = c;
+            c.grappleObject = gameObject;
         }
         this.hook = hook;
         this.grappler = grappler;
@@ -78,25 +79,25 @@ public class Grapple : MonoBehaviour
         grappler.rope.positionCount = 2;
         grappler.rope.SetPosition(0, grappler.c.transform.position);
         grappler.rope.SetPosition(1, transform.position);
-        Vector2 tempposition = c.transform.position;
+        Vector2 tempposition = player.transform.position;
         Vector2 tempposition2 = hook.transform.position;
 
         if (hooked)
         {
-            if (c.grappling)
+            if (player.grappling)
             {
                 
                 if (Vector2.Distance(tempposition, tempposition2) > 1.5)
                 {
 
                     //c.rb.velocity = new Vector3(0,0,0);
-                    c.BiggRigid.transform.position = tempposition2 + (tempposition - tempposition2).normalized * 1.5f;
+                    player.BiggRigid.transform.position = tempposition2 + (tempposition - tempposition2).normalized * 1.5f;
                     grappler.rope.SetPosition(0, grappler.c.transform.position);
                     grappler.rope.SetPosition(1, transform.position);
                     if ((tempposition2.y-tempposition.y) >= 1.54)
                     {
                         //c.rb.useGravity = false;
-                        c.BiggRigid.velocity = new Vector3(0, 0, 0);
+                        player.BiggRigid.velocity = new Vector3(0, 0, 0);
                         hanging = true;
 
                     }
@@ -113,7 +114,7 @@ public class Grapple : MonoBehaviour
         }
         else if (grappling && !returning)
         {
-            c.BiggRigid.velocity = (tempposition2 - tempposition) * grappleSpeed;
+            player.BiggRigid.velocity = (tempposition2 - tempposition) * grappleSpeed;
             if (Vector2.Distance(tempposition,tempposition2) < 1)
             {
                 hooked = true;
@@ -133,15 +134,16 @@ public class Grapple : MonoBehaviour
         grappletimecount += Time.deltaTime;
     }
 
-    void EndHook()
+    public void EndHook()
     {
-        c.BiggRigid.useGravity = true;
+        player.BiggRigid.useGravity = true;
         if (hanging)
         {
-            c.BiggRigid.velocity = new Vector3(0, 0, 0);
+            player.BiggRigid.velocity = new Vector3(0, 0, 0);
             //hooked = false;
         }
-        c.grapple = false;
+        player.grapple = false;
+        player.grappleObject = null;
         grappler.grappling = false;
         grappler.rope.positionCount = 0;
         Destroy(hook);
