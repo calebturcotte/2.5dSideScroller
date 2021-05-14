@@ -67,10 +67,12 @@ public class Player : Character
     public override void DamageTaken(int damage)
     {
         currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
         if (currentHealth <= 0)
         {
-            Destroy(gameObject);
+            Time.timeScale = 0f;
             gameOver.SetActive(true);
+            //Destroy(gameObject);
         }
     }
 
