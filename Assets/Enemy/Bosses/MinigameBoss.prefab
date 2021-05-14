@@ -168,7 +168,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8e3b1ee95490de4a93a214a2fdfce51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currenthealth: 20
+  characterMaxHealth: 0
+  currentHealth: 0
+  moveRight: 0
+  moveLeft: 0
+  grapple: 0
+  grappling: 0
+  shoot: 0
+  jump: 0
+  grounded: 0
+  dash: 0
+  getItem: 0
+  direction: 1
+  animator: {fileID: 7438521255015508617}
+  aimingposition: {x: 0, y: 0, z: 0}
+  movement: {x: 0, y: 0, z: 0}
   masterRoom: {fileID: 0}
 --- !u!114 &-5892114473850599053
 MonoBehaviour:
@@ -177,12 +191,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7438521255015508624}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1bfcaf56cd1e634db70d336cc3504cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 50
+  characterMaxHealth: 0
+  currentHealth: 0
   moveRight: 0
   moveLeft: 0
   grapple: 0
@@ -194,6 +209,5 @@ MonoBehaviour:
   getItem: 0
   direction: 0
   animator: {fileID: 7438521255015508617}
-  cam: {fileID: 0}
   aimingposition: {x: 0, y: 0, z: 0}
   movement: {x: 0, y: 0, z: 0}

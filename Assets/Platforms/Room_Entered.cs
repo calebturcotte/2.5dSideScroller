@@ -25,7 +25,7 @@ public class Room_Entered : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (alreadyentered == true)
+        if (alreadyentered)
         {
             return;
         }
@@ -41,13 +41,15 @@ public class Room_Entered : MonoBehaviour
             //turn on collider and mesh renderer for each door object we specify in the room
             foreach(GameObject Door in Doors)
             {
+                //can set Doors to Active instead of enabling smaller components
                 Door.GetComponent<BoxCollider>().enabled = true;
                 Door.GetComponent<MeshRenderer>().enabled = true;
             }
 
             GameObject enemy = Instantiate(enemyBoss,new Vector3(camTarget.position.x,camTarget.position.y,0), camTarget.rotation); //firePoint.position, firePoint.rotation);
             //Should make a new script for enemy movement that is different than the one used for players
-            enemy.GetComponent<Player>().cam = ourcamera;
+            //TODO: overhaul this setup for the enemy boss
+            //enemy.GetComponent<Player>().cam = ourcamera;
 
             enemy.GetComponent<BossHealthManager>().masterRoom = gameObject;
 

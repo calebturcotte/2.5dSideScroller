@@ -33,10 +33,9 @@ public class BlastZone : MonoBehaviour
             Instantiate(particles, other.transform.position, Quaternion.identity);
 
             //damage player and move them back to last platform they were on
-            PlayerHealth health = other.GetComponent<PlayerHealth>();
-            health.DamageTaken(damage);
 
             Player player = other.GetComponent<Player>();
+            player.DamageTaken(damage);
             other.gameObject.transform.position = player.getLastPlatform().transform.position + new Vector3(0, player.getLastPlatform().transform.localScale.y + 0.5f, 0);
 
             //delete the grapple hook if it exists
