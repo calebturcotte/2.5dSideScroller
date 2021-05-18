@@ -33,6 +33,12 @@ public class Bullet : MonoBehaviour
             health.DamageTaken(damage);
             Physics.IgnoreCollision(bulletCollider, collider, true);
         }
+        else if (collider.CompareTag("Boss"))
+        {
+            Character health = collider.GetComponentInParent<Character>();
+            health.DamageTaken(damage);
+            Physics.IgnoreCollision(bulletCollider, collider, true);
+        }
         Destroy(gameObject); //destroy the bullet regardless of what it hits
     }
 

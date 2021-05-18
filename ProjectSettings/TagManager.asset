@@ -9,6 +9,7 @@ TagManager:
   - Collectible
   - MovingPlatform
   - PlayerBullet
+  - Boss
   layers:
   - Default
   - TransparentFX

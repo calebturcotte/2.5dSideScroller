@@ -141,7 +141,7 @@ public class Character : MonoBehaviour
         return boxCastHit; //return the value of boxCastHit
     }
 
-    public bool IsGrounded() //Ground collision checker
+    public virtual bool IsGrounded() //Ground collision checker
     {
 
 
