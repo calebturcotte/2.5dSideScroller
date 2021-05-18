@@ -66,7 +66,7 @@ public class BossWitch : BossHealthManager
 
                     if(teleportcount == 2)
                     {
-                        Instantiate(minion, new Vector3(transform.position.x, transform.position.y+3, 0), transform.rotation); 
+                        Instantiate(minion, new Vector3(enemyRB.transform.position.x, enemyRB.transform.position.y+3, 0), transform.rotation); 
                     }
                 }
                 
@@ -86,7 +86,7 @@ public class BossWitch : BossHealthManager
     {
         for (int i = 0; i < (Random.Range(1,3)); i++)
         {
-            Instantiate(bullet, new Vector3(Mathf.Cos(bulletangle)*2, Mathf.Sin(bulletangle)*2, 0) + transform.position, transform.rotation);
+            Instantiate(bullet, new Vector3(Mathf.Cos(bulletangle)*2, Mathf.Sin(bulletangle)*2, 0) + enemyRB.transform.position, transform.rotation);
             bulletangle = (bulletangle + 120) % 360;
         }
 
