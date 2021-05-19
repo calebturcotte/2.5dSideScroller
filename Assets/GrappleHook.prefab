@@ -126,7 +126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 828ed49ea8d245a43afb38f54d76c0ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hookrigidbody: {fileID: 9214303172321859379}
+  currentRopeLength: 0
+  rope: {fileID: -9001449277425965766}
 --- !u!120 &-9001449277425965766
 LineRenderer:
   m_ObjectHideFlags: 0

@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 868167ffa16d71b4a8e032f1924186c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterMaxHealth: 100
+  characterMaxHealth: 35
   currentHealth: 0
   moveRight: 0
   moveLeft: 0
@@ -139,7 +139,6 @@ MonoBehaviour:
   jump: 0
   grounded: 0
   dash: 0
-  getItem: 0
   direction: 0
   animator: {fileID: 4260700584938764007}
   aimingposition: {x: 0, y: 0, z: 0}

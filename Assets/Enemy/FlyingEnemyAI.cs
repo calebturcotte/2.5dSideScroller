@@ -48,6 +48,7 @@ public class FlyingEnemyAI : Character
         {
             if (PlayerScanner()) //check for the player before anything else
             { //if you find a player, stop patrolling and exit this loop
+                FaceThePlayer(); // face towards the player based on position
                 patrolling = false; //stop patrolling --> will force loop to engage the player
                 return; // leave the loop and on the next frame, engage player
             } 
@@ -75,7 +76,7 @@ public class FlyingEnemyAI : Character
     {    
         Vector3 shootDirection = enemyRB.transform.position - playerRB.transform.position;
         //get vector that points towards player
-        if ((shootDirection.magnitude > shootThreshold) || (shootDirection.magnitude < -shootThreshold))   
+        if ((shootDirection.magnitude > shootThreshold))   
         { //will almost never be called; checks if player is too far away
             patrolling = true; //briefly turn on patrolling so enemy will edge closer to the player
             /*note: patrolling will likely turn off again within a few frames
@@ -102,13 +103,7 @@ public class FlyingEnemyAI : Character
     {
         if(collision.collider.CompareTag("PlayerBullet")) //if hit by a player bullet
         {
-            if ((enemyRB.transform.position - playerRB.transform.position).magnitude < 0)
-            { //if the enemy is to the left of the player
-                direction = 1; //face right; face the player
-            } else //otherwise enemy is to the right of the player
-            {
-                direction = -1; //otherwise face left, face the player
-            }
+            FaceThePlayer();
         }
 
         if(collision.collider.CompareTag("Enemy"))
@@ -119,6 +114,18 @@ public class FlyingEnemyAI : Character
         //could add grounded conditions here
     }
 
+
+    void FaceThePlayer()
+    {
+        if ((enemyRB.transform.position - playerRB.transform.position).x < 0)
+        { //if the enemy is to the left of the player
+            direction = 1; //face right; face the player
+        }
+        else //otherwise enemy is to the right of the player
+        {
+            direction = -1; //otherwise face left, face the player
+        }
+    }
     void Fire(Vector3 shootDirection) //fire bullet
     {
         GameObject bullet = Instantiate(bulletPrefab, enemyRB.transform.position - shootDirection.normalized * 1, enemyRB.transform.rotation); //firePoint.position, firePoint.rotation);   
@@ -170,9 +177,11 @@ public class FlyingEnemyAI : Character
 
     public bool PlayerScanner()
     {
+        Vector3 shootDirection = playerRB.transform.position - enemyRB.transform.position;
         BoxCollider box = GetComponent<BoxCollider>(); //get component of the box collider
         LayerMask myMask = LayerMask.GetMask("Player"); //get a layer mask set to the "player"
-        bool playerScanner = Physics.BoxCast(box.bounds.center + box.bounds.extents * 1.5f * direction, transform.localScale, Vector3.right * direction, Quaternion.identity, shootThreshold, myMask); //seems to be the most precise way to do this so far
+        bool playerScanner = Physics.Raycast(box.bounds.center, shootDirection, shootThreshold, myMask);
+        //bool playerScanner = Physics.BoxCast(box.bounds.center + box.bounds.extents * 1.5f * direction, transform.localScale, shootDirection, Quaternion.identity, shootThreshold, myMask); //seems to be the most precise way to do this so far
         //scans as far as the enemy can shoot + box is 1.5x size of the enemy
         return playerScanner;//return the value of playerScanner
     }

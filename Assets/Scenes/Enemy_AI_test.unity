@@ -590,6 +590,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 757121192}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &420939151 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8502917976532835298, guid: 23852fec0af2d14408ca4c15750fceb6,
+    type: 3}
+  m_PrefabInstance: {fileID: 8502917975112289517}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &474309028 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2341617826756235284, guid: e79e9d2fdc06b2e489b298a59625238b,
@@ -1123,7 +1129,7 @@ PrefabInstance:
     - target: {fileID: 5481468650111170963, guid: 833924fa9767dce47b9719e49dd97583,
         type: 3}
       propertyPath: characterMaxHealth
-      value: 50
+      value: 35
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 833924fa9767dce47b9719e49dd97583, type: 3}
@@ -2432,6 +2438,21 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 318872085}
+    - target: {fileID: 4315957720951232653, guid: 23852fec0af2d14408ca4c15750fceb6,
+        type: 3}
+      propertyPath: grappleObject
+      value: 
+      objectReference: {fileID: 420939151}
+    - target: {fileID: 8502917975910126200, guid: 23852fec0af2d14408ca4c15750fceb6,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8502917975910126200, guid: 23852fec0af2d14408ca4c15750fceb6,
+        type: 3}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8502917976448448953, guid: 23852fec0af2d14408ca4c15750fceb6,
         type: 3}
       propertyPath: m_LocalPosition.x
