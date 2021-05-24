@@ -73,7 +73,7 @@ public class Grapple : MonoBehaviour
 
                 player.BiggRigid.velocity = Vector3.zero;
                 player.BiggRigid.transform.position = Vector3.Lerp(playerPosition,hangingPosition, Time.deltaTime * grappleSpeed);
-                CheckRigidbodyProperty(player.BiggRigid, tempRB, playerPosition, hangingPosition);
+                CheckRigidbodyProperty(playerPosition, hangingPosition);
             } 
         } else
         {
@@ -89,6 +89,15 @@ public class Grapple : MonoBehaviour
         grappler.grappling = false;
         rope.positionCount = 0;
         Destroy(hook);
+
+        if (currentRopeLength >= 3.5f) // arbitrary length of rope
+        {
+            player.BiggRigid.AddForce(player.BiggRigid.velocity);
+        }
+        else if (currentRopeLength < 3.5f) // arbitrary length of rope
+        {
+            player.BiggRigid.AddForce(-player.BiggRigid.velocity);
+        }
     }
 
     public void DrawRope()
@@ -97,17 +106,17 @@ public class Grapple : MonoBehaviour
         rope.SetPosition(1, transform.position); //rope ends at grappleShot's position
     }
 
-    public Rigidbody CheckRigidbodyProperty(Rigidbody rb, Rigidbody tempRB, Vector3 playerPosition, Vector3 hangingPosition)
+    public Rigidbody CheckRigidbodyProperty(Vector3 playerPosition, Vector3 hangingPosition)
     {
         if (currentRopeLength >= 3.5f) // arbitrary length of rope
         {
-            rb.velocity = Vector3.zero;
+            player.BiggRigid.velocity = Vector3.zero;
         }
         else if (currentRopeLength < 3.5f) // arbitrary length of rope
         {
-            rb.velocity = tempRB.velocity;
-            rb.AddForce((hangingPosition - playerPosition) * 0.2f, ForceMode.Impulse);
+            player.BiggRigid.velocity = tempRB.velocity;
+            player.BiggRigid.AddForce((hangingPosition - playerPosition) * 0.15f, ForceMode.Impulse);
         }
-        return rb;
+        return player.BiggRigid;
     }
 }

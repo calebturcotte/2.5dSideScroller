@@ -13,7 +13,6 @@ public class MoveForward : StateData
 
     }
 
-
     public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
         Character c = characterState.GetCharacterControl(animator); //create an object of the Player Class
@@ -22,7 +21,6 @@ public class MoveForward : StateData
         {
             animator.SetBool(Player.TransitionParameter.colliding.ToString(), true); //display TRUE in animator
             animator.SetBool(Player.TransitionParameter.walk.ToString(), false); //end the WALKING state
-
         }
         else
         {
