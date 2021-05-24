@@ -39,19 +39,21 @@ public class MoveForward : StateData
                 return;
             }
 
+               
             if (c.moveRight) //if input manager's moveRight = true, move
             {
                 c.transform.rotation = Quaternion.Euler(0f, 0f, 0f); //object rotates to FACE RIGHT = forward, positive direction                                                                                                
-                c.transform.Translate(Vector3.right * movespeed * Time.deltaTime); //translation                                                                         
-
+                c.transform.Translate(Vector3.right * movespeed * Time.deltaTime); //translation                                                                             
             }
 
+              
             if (c.moveLeft) //if input manager's moveLeft = true, move
             {
                 c.transform.rotation = Quaternion.Euler(0f, 180f, 0f); //object rotates to FACE LEFT (more visible with models, not cube) = backward, negative direction 
                 c.transform.Translate(Vector3.right * movespeed * Time.deltaTime);
             }
-
+        
+        
             if (c.dash)
             {
                 animator.SetBool(Player.TransitionParameter.dash.ToString(), true);

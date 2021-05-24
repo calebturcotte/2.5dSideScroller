@@ -15,7 +15,7 @@ public class Grapple : MonoBehaviour
     public LineRenderer rope;
     public Rigidbody tempRB;
 
-    void OnCollisionEnter(Collision collision)
+    public void OnCollisionEnter(Collision collision)
     {
             hooked = true;
             if(joint == null)
@@ -50,7 +50,7 @@ public class Grapple : MonoBehaviour
         rope.positionCount = 2;
     }
 
-    void Update()
+    public void Update()
     {
         DrawRope();
 
@@ -71,6 +71,7 @@ public class Grapple : MonoBehaviour
                 tempRB = GetComponent<Rigidbody>();
                 tempRB.velocity = player.BiggRigid.velocity;
 
+                player.hanging = true;
                 player.BiggRigid.velocity = Vector3.zero;
                 player.BiggRigid.transform.position = Vector3.Lerp(playerPosition,hangingPosition, Time.deltaTime * grappleSpeed);
                 CheckRigidbodyProperty(playerPosition, hangingPosition);
@@ -83,21 +84,17 @@ public class Grapple : MonoBehaviour
 
     public void EndHook()
     {
+        player.hanging = false;
         player.BiggRigid.useGravity = true;
         player.grapple = false;
         player.grappleObject = null;
         grappler.grappling = false;
         rope.positionCount = 0;
+        if (hooked)
+        {
+            EndHookRigidbody();
+        }
         Destroy(hook);
-
-        if (currentRopeLength >= 3.5f) // arbitrary length of rope
-        {
-            player.BiggRigid.AddForce(player.BiggRigid.velocity);
-        }
-        else if (currentRopeLength < 3.5f) // arbitrary length of rope
-        {
-            player.BiggRigid.AddForce(-player.BiggRigid.velocity);
-        }
     }
 
     public void DrawRope()
@@ -115,8 +112,21 @@ public class Grapple : MonoBehaviour
         else if (currentRopeLength < 3.5f) // arbitrary length of rope
         {
             player.BiggRigid.velocity = tempRB.velocity;
-            player.BiggRigid.AddForce((hangingPosition - playerPosition) * 0.15f, ForceMode.Impulse);
+            player.BiggRigid.AddForce((hangingPosition - playerPosition) * 0.2f, ForceMode.Impulse);
         }
         return player.BiggRigid;
+    }
+
+
+    void EndHookRigidbody()
+    {
+        if (currentRopeLength >= 3.5f) // arbitrary length of rope
+        {
+            player.BiggRigid.AddForce((player.BiggRigid.velocity * 1.5f) + Vector3.up, ForceMode.Impulse);
+        }
+        else if (currentRopeLength < 3.5f) // arbitrary length of rope
+        {
+            player.BiggRigid.AddForce((-player.BiggRigid.velocity * 1.5f) + Vector3.up, ForceMode.Impulse);
+        }
     }
 }

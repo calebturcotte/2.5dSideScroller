@@ -31,6 +31,7 @@ public class Character : MonoBehaviour
     public bool jump;
     public bool grounded;
     public bool dash;
+    public bool hanging;
 
     public int direction = 1; //you always start off facing RIGHT
 

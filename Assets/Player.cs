@@ -22,7 +22,7 @@ public class Player : Character
     public GameObject pauseMenuUI;
     public GameObject gameOver;
 
-    Vector3 maxSpeed = new Vector3(0.0f, -5.0f, 0.0f);
+
     public override void Awake()
     {
         currentHealth = characterMaxHealth;
