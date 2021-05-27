@@ -144,7 +144,6 @@ public class Character : MonoBehaviour
     public bool IsGrounded() //Ground collision checker
     {
 
-
         BoxCollider box = GetComponent<BoxCollider>(); //get component of the box collider
         bool boxCastHit = Physics.BoxCast(box.bounds.center + (Vector3.up * 0.1f), transform.localScale/2, Vector3.down, Quaternion.identity, transform.localScale.y/4);
 
