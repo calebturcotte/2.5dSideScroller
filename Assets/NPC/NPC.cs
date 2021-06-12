@@ -23,14 +23,14 @@ public class NPC : MonoBehaviour
         {
             if(!started)
             {
-                EventTrigger();
+                EventTrigger(other.gameObject);
             }
             
         }
     }
 
     // Trigger event caused by the Player entering npc's field of view
-    public virtual void EventTrigger()
+    public virtual void EventTrigger(GameObject player)
     {
         StartCoroutine(addText(dialogue));
     }

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Bones
   m_EditorClassIdentifier: 
   type: 0
-  itemName: New Item
+  itemName: Bones
   itemDescription: 
   price: 0

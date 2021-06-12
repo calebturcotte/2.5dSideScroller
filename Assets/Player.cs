@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : Character
 {
@@ -21,11 +22,18 @@ public class Player : Character
     public static bool GamePaused = false;
     public GameObject pauseMenuUI;
     public GameObject gameOver;
+    public GameObject shopMenuUI;
+    public GameObject shopMenuLayout;
+    public GameObject buttonPrefab;
+
+    public InventoryObject shopkeep; // our shopkeep inventory
+    public static bool isShopping;
 
     public override void Awake()
     {
         currentHealth = characterMaxHealth;
         healthBar.SetMaxHealth(characterMaxHealth);
+        isShopping = false;
                
     }
 
@@ -43,7 +51,8 @@ public class Player : Character
 
       
 
-        if (VirtualInputManager.Instance.pause)
+        if (VirtualInputManager.Instance.pause
+             && !isShopping)
         {
             if (GamePaused == false)
             {
@@ -59,6 +68,26 @@ public class Player : Character
                 pauseMenuUI.SetActive(false);
                 GamePaused = false;
                 Time.timeScale = 1;
+            }
+        }
+        else if (shopkeep != null
+                    && VirtualInputManager.Instance.jump)
+        {
+            // open up shop
+
+            if (isShopping)
+            {
+                shopMenuLayout.SetActive(false);
+                isShopping = false;
+                GamePaused = false;
+                Time.timeScale = 1;
+            } else
+            {
+                shopMenuLayout.SetActive(true);
+                Debug.Log("Pressed");
+                GamePaused = true;
+                Time.timeScale = 0;
+                setUpShop();
             }
         }
 
@@ -128,6 +157,37 @@ public class Player : Character
     public GameObject getLastPlatform()
     {
         return lastPlatform;
+    }
+
+    // Instantiate all shop buttons for the shop
+    private void setUpShop()
+    {
+        if (isShopping)
+        {
+            return;
+        }
+        isShopping = true; //check that we only set up shop once
+
+        foreach (Transform child in shopMenuUI.transform)
+        {
+            GameObject.Destroy(child.gameObject); // empty the menu before adding more
+        }
+
+        for (int i = 0; i < shopkeep.Container.Count; i++)
+        {
+            GameObject button = Instantiate(buttonPrefab);
+            button.transform.SetParent(shopMenuUI.transform);
+
+            Text ButtonText = button.GetComponentInChildren<Text>();
+
+            ButtonText.text = shopkeep.Container[i].item.itemName;
+
+            // add onclick that checks item price and player inventory money
+
+
+
+            Debug.Log(shopkeep.Container[i].item);
+        }
     }
 
 
