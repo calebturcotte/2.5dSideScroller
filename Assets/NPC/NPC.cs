@@ -7,7 +7,8 @@ public class NPC : MonoBehaviour
     /**
      * NPC script responsible for handling NPC's vision/reactions
      */
-    public string dialogue;
+    [TextArea(2,10)]
+    public string[] dialogue;
     private TextMesh myText;
     private bool started;
 
@@ -32,7 +33,7 @@ public class NPC : MonoBehaviour
     // Trigger event caused by the Player entering npc's field of view
     public virtual void EventTrigger(GameObject player)
     {
-        StartCoroutine(addText(dialogue));
+        StartCoroutine(addText(dialogue[0]));
     }
 
     // Adds text to TextMesh by character over time to have a more fluid effect

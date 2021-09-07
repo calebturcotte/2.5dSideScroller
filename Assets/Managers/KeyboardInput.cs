@@ -16,6 +16,7 @@ public class KeyboardInput : Singleton<KeyboardInput>
         VirtualInputManager.Instance.jump = Input.GetButtonDown("jump");
         VirtualInputManager.Instance.dash = Input.GetButtonDown("dash");
         VirtualInputManager.Instance.pause = Input.GetButtonDown("pause");
+        VirtualInputManager.Instance.interact = Input.GetButtonDown("interact");
 
     }
 }

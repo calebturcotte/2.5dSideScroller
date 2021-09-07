@@ -5,10 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Main Menu.unity
     guid: b9cb7ce92c364694a8abe0f273e7ec68
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Enemy_AI_test.unity
     guid: ec3a022173fa81f4ca460b6ed4ff414e
+  - enabled: 1
+    path: Assets/Scenes/Boss_Room_test.unity
+    guid: 7a4f1ced22ca48b4784d6096078825b5
   m_configObjects: {}

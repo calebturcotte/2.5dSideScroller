@@ -24,10 +24,14 @@ public class Player : Character
     public GameObject gameOver;
     public GameObject shopMenuUI;
     public GameObject shopMenuLayout;
-    public GameObject buttonPrefab;
+    public Text shopMenuText;
+    public Button buttonPrefab;
+    public GameObject warpDestination;
 
     public InventoryObject shopkeep; // our shopkeep inventory
     public static bool isShopping;
+
+    public int currency;
 
     public override void Awake()
     {
@@ -70,25 +74,31 @@ public class Player : Character
                 Time.timeScale = 1;
             }
         }
-        else if (shopkeep != null
-                    && VirtualInputManager.Instance.jump)
+        else if (VirtualInputManager.Instance.interact)
         {
-            // open up shop
-
-            if (isShopping)
+            if (shopkeep != null)
             {
-                shopMenuLayout.SetActive(false);
-                isShopping = false;
-                GamePaused = false;
-                Time.timeScale = 1;
-            } else
-            {
-                shopMenuLayout.SetActive(true);
-                Debug.Log("Pressed");
-                GamePaused = true;
-                Time.timeScale = 0;
-                setUpShop();
+                // open up shop
+                if (isShopping)
+                {
+                    shopMenuLayout.SetActive(false);
+                    isShopping = false;
+                    GamePaused = false;
+                    Time.timeScale = 1;
+                }
+                else
+                {
+                    shopMenuLayout.SetActive(true);
+                    GamePaused = true;
+                    Time.timeScale = 0;
+                    setUpShop();
+                }
             }
+            else if (warpDestination != null)
+            {
+                warpPlayer();
+            }
+
         }
 
         base.Update();
@@ -175,19 +185,57 @@ public class Player : Character
 
         for (int i = 0; i < shopkeep.Container.Count; i++)
         {
-            GameObject button = Instantiate(buttonPrefab);
+            Button button = Instantiate(buttonPrefab);
             button.transform.SetParent(shopMenuUI.transform);
+
 
             Text ButtonText = button.GetComponentInChildren<Text>();
 
-            ButtonText.text = shopkeep.Container[i].item.itemName;
+            var itemSlot = i;
+            ItemObject item = shopkeep.Container[i].item;
+
+            ButtonText.text = item.itemName + " (" + item.price + "gp) ";
+
+            button.onClick.AddListener(() => {
+                buyItem(item, button);
+                });
 
             // add onclick that checks item price and player inventory money
-
-
-
-            Debug.Log(shopkeep.Container[i].item);
         }
+    }
+
+    // Listener for when the player tries to buy an item from the shop
+    private void buyItem(ItemObject item, Button thisButton)
+    {
+        Debug.Log(item.price);
+        if (item.price <= currency)
+        {
+            inventory.AddItem(item, 1);
+            currency -= item.price;
+            shopMenuText.text = "Thanks for your purchase!";
+            if (shopkeep.removeItem(item, 1))
+            {
+                //Destroy the button if there are no items left to sell
+                isShopping = false;
+                setUpShop();
+            }
+        }
+        else
+        {
+            shopMenuText.text = "Not enough funds!";
+        }
+        // reset the time scale
+        Time.timeScale = 0;
+    }
+
+    private void warpPlayer()
+    {
+        //delete the grapple hook if it exists
+        if (grappleObject != null)
+        {
+            grappleObject.GetComponent<Grapple>().EndHook();
+        }
+        transform.position = warpDestination.transform.position;
     }
 
 

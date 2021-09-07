@@ -12,4 +12,5 @@ public class VirtualInputManager : Singleton<VirtualInputManager>
     public bool jump;
     public bool dash;
     public bool pause;
+    public bool interact;
 }

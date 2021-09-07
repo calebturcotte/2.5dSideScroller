@@ -22,6 +22,26 @@ public class InventoryObject : ScriptableObject //Inventories will be scriptable
         }
             Container.Add(new InventorySlot(_item, _quantity)); //add to our list
     }
+
+    // Returns true if we should remove the item
+    public bool removeItem(ItemObject _item, int _quantity)
+    {
+        for (int i = 0; i < Container.Count; i++) //Container is a list of items
+        {
+            if (Container[i].item == _item) //scan the list of items. If we already have it, ____
+            {
+                // Remove quantity of the object then also remove it from list if quantity is less than 0
+                if (Container[i].removeAmount(_quantity) < 1)
+                {
+                    Container.RemoveAt(i);
+                    return true;
+                }
+                return false;
+                //exit the function
+            }
+        }
+        return false;
+    }
 }
 
 [System.Serializable]
@@ -38,5 +58,10 @@ public class InventorySlot
     public void AddAmount(int value)
     {
         quantity += value;
+    }
+
+    public int removeAmount(int value)
+    {
+        return quantity -= value;
     }
 }
