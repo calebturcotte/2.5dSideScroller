@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : Character
 {
@@ -21,11 +22,22 @@ public class Player : Character
     public static bool GamePaused = false;
     public GameObject pauseMenuUI;
     public GameObject gameOver;
+    public GameObject shopMenuUI;
+    public GameObject shopMenuLayout;
+    public Text shopMenuText;
+    public Button buttonPrefab;
+    public GameObject warpDestination;
+
+    public InventoryObject shopkeep; // our shopkeep inventory
+    public static bool isShopping;
+
+    public int currency;
 
     public override void Awake()
     {
         currentHealth = characterMaxHealth;
         healthBar.SetMaxHealth(characterMaxHealth);
+        isShopping = false;
                
     }
 
@@ -43,7 +55,8 @@ public class Player : Character
 
       
 
-        if (VirtualInputManager.Instance.pause)
+        if (VirtualInputManager.Instance.pause
+             && !isShopping)
         {
             if (GamePaused == false)
             {
@@ -60,6 +73,32 @@ public class Player : Character
                 GamePaused = false;
                 Time.timeScale = 1;
             }
+        }
+        else if (VirtualInputManager.Instance.interact)
+        {
+            if (shopkeep != null)
+            {
+                // open up shop
+                if (isShopping)
+                {
+                    shopMenuLayout.SetActive(false);
+                    isShopping = false;
+                    GamePaused = false;
+                    Time.timeScale = 1;
+                }
+                else
+                {
+                    shopMenuLayout.SetActive(true);
+                    GamePaused = true;
+                    Time.timeScale = 0;
+                    setUpShop();
+                }
+            }
+            else if (warpDestination != null)
+            {
+                warpPlayer();
+            }
+
         }
 
         base.Update();
@@ -128,6 +167,75 @@ public class Player : Character
     public GameObject getLastPlatform()
     {
         return lastPlatform;
+    }
+
+    // Instantiate all shop buttons for the shop
+    private void setUpShop()
+    {
+        if (isShopping)
+        {
+            return;
+        }
+        isShopping = true; //check that we only set up shop once
+
+        foreach (Transform child in shopMenuUI.transform)
+        {
+            GameObject.Destroy(child.gameObject); // empty the menu before adding more
+        }
+
+        for (int i = 0; i < shopkeep.Container.Count; i++)
+        {
+            Button button = Instantiate(buttonPrefab);
+            button.transform.SetParent(shopMenuUI.transform);
+
+
+            Text ButtonText = button.GetComponentInChildren<Text>();
+
+            var itemSlot = i;
+            ItemObject item = shopkeep.Container[i].item;
+
+            ButtonText.text = item.itemName + " (" + item.price + "gp) ";
+
+            button.onClick.AddListener(() => {
+                buyItem(item, button);
+                });
+
+            // add onclick that checks item price and player inventory money
+        }
+    }
+
+    // Listener for when the player tries to buy an item from the shop
+    private void buyItem(ItemObject item, Button thisButton)
+    {
+        Debug.Log(item.price);
+        if (item.price <= currency)
+        {
+            inventory.AddItem(item, 1);
+            currency -= item.price;
+            shopMenuText.text = "Thanks for your purchase!";
+            if (shopkeep.removeItem(item, 1))
+            {
+                //Destroy the button if there are no items left to sell
+                isShopping = false;
+                setUpShop();
+            }
+        }
+        else
+        {
+            shopMenuText.text = "Not enough funds!";
+        }
+        // reset the time scale
+        Time.timeScale = 0;
+    }
+
+    private void warpPlayer()
+    {
+        //delete the grapple hook if it exists
+        if (grappleObject != null)
+        {
+            grappleObject.GetComponent<Grapple>().EndHook();
+        }
+        transform.position = warpDestination.transform.position;
     }
 
 

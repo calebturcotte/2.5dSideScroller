@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f464392b757368c4dbe9c46de41f6510, type: 3}
+  m_Name: Shopkeep
+  m_EditorClassIdentifier: 
+  Container:
+  - item: {fileID: 11400000, guid: 13fa9036e00e33c4fb0decd32c68f756, type: 2}
+    quantity: 1
+  - item: {fileID: 11400000, guid: f9c6fa6f5ab3c1c48af357fc9dcc8618, type: 2}
+    quantity: 2
+  - item: {fileID: 11400000, guid: 13fa9036e00e33c4fb0decd32c68f756, type: 2}
+    quantity: 3
+  - item: {fileID: 11400000, guid: f9c6fa6f5ab3c1c48af357fc9dcc8618, type: 2}
+    quantity: 4
+  - item: {fileID: 11400000, guid: 13fa9036e00e33c4fb0decd32c68f756, type: 2}
+    quantity: 5
